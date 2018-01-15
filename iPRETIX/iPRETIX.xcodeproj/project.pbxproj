@@ -13,7 +13,11 @@
 		D8A12A5C200A6B90009830C6 /* iPRETIXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A5B200A6B90009830C6 /* iPRETIXTests.swift */; };
 		D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A95200CD8A5009830C6 /* CoreDataStack.swift */; };
 		D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A99200CDB88009830C6 /* iPRETIX.xcdatamodeld */; };
+		D8A12A9F200CF639009830C6 /* ScanConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A9E200CF639009830C6 /* ScanConfigurationViewController.swift */; };
+		D8A12AA1200CF902009830C6 /* ScanTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA0200CF902009830C6 /* ScanTicketViewController.swift */; };
+		D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */; };
 		D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA4200CF920009830C6 /* EventOverviewViewController.swift */; };
+		D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA6200CF963009830C6 /* ManualSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,11 @@
 		D8A12A5D200A6B90009830C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A12A95200CD8A5009830C6 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D8A12A9A200CDB88009830C6 /* iPRETIX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iPRETIX.xcdatamodel; sourceTree = "<group>"; };
+		D8A12A9E200CF639009830C6 /* ScanConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanConfigurationViewController.swift; sourceTree = "<group>"; };
+		D8A12AA0200CF902009830C6 /* ScanTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketViewController.swift; sourceTree = "<group>"; };
+		D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		D8A12AA4200CF920009830C6 /* EventOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewViewController.swift; sourceTree = "<group>"; };
+		D8A12AA6200CF963009830C6 /* ManualSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,8 @@
 		D8A12A6C200CD2FF009830C6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				D8A12A9E200CF639009830C6 /* ScanConfigurationViewController.swift */,
+				D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -162,6 +172,7 @@
 		D8A12A6D200CD304009830C6 /* Scan Ticket */ = {
 			isa = PBXGroup;
 			children = (
+				D8A12AA0200CF902009830C6 /* ScanTicketViewController.swift */,
 			);
 			path = "Scan Ticket";
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 		D8A12A6E200CD30A009830C6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				D8A12AA6200CF963009830C6 /* ManualSearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -305,10 +317,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A12A9F200CF639009830C6 /* ScanConfigurationViewController.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,
+				D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */,
+				D8A12AA1200CF902009830C6 /* ScanTicketViewController.swift in Sources */,
 				D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */,
+				D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
