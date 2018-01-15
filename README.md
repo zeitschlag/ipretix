@@ -4,7 +4,7 @@
 
 universal iOS-app to scan and validate pretix-tickets
 
-### Login
+### Configuration
 - User scans the pretixdroid configuration-QR-code to read the configuration
 - this configuration contains a json with a secret key, the URL, and 'allow_search', which defines, whether the user is allowed to use the manual search (or not)
 - use the secret key in the `Authorization: Token`-Header when talking to the API
