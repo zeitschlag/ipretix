@@ -50,10 +50,12 @@ class EventOverviewViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateViewVisibility()
     }
     
     func updateViewVisibility() {
+        //TODO: Read Configuration
         let eventConfigured = true
         
         if eventConfigured == true {
