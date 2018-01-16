@@ -18,6 +18,9 @@
 		D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */; };
 		D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA4200CF920009830C6 /* EventOverviewViewController.swift */; };
 		D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA6200CF963009830C6 /* ManualSearchViewController.swift */; };
+		D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA8200D0112009830C6 /* EventOverviewView.swift */; };
+		D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAA200D011C009830C6 /* NoEventView.swift */; };
+		D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		D8A12AA4200CF920009830C6 /* EventOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewViewController.swift; sourceTree = "<group>"; };
 		D8A12AA6200CF963009830C6 /* ManualSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSearchViewController.swift; sourceTree = "<group>"; };
+		D8A12AA8200D0112009830C6 /* EventOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewView.swift; sourceTree = "<group>"; };
+		D8A12AAA200D011C009830C6 /* NoEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventView.swift; sourceTree = "<group>"; };
+		D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanConfigurationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			children = (
 				D8A12A9E200CF639009830C6 /* ScanConfigurationViewController.swift */,
 				D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */,
+				D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -189,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				D8A12AA4200CF920009830C6 /* EventOverviewViewController.swift */,
+				D8A12AA8200D0112009830C6 /* EventOverviewView.swift */,
+				D8A12AAA200D011C009830C6 /* NoEventView.swift */,
 			);
 			path = "Event Overview";
 			sourceTree = "<group>";
@@ -318,10 +327,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A12A9F200CF639009830C6 /* ScanConfigurationViewController.swift in Sources */,
+				D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */,
+				D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,
 				D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */,
+				D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */,
 				D8A12AA1200CF902009830C6 /* ScanTicketViewController.swift in Sources */,
 				D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */,
 				D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */,

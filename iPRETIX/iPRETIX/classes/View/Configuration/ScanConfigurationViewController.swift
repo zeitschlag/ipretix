@@ -7,29 +7,57 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ScanConfigurationViewController: UIViewController {
+    
+    var doneButton: UIBarButtonItem?
+    var scanConfigurationView: ScanConfigurationView?
+    
+    override func loadView() {
+        super.loadView()
+        
+        let scanConfigurationView = ScanConfigurationView(frame: .zero)
+        self.scanConfigurationView = scanConfigurationView
+        
+        self.view.addSubview(scanConfigurationView)
+
+        // there must be a better way to define the navigationItems than doing this in the viewDidLoad/loadView
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let scanConfigurationView = self.scanConfigurationView else {
+            assertionFailure("Check scanConfigurationView")
+            return
+        }
+        
+        let topContentConstraint = scanConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+        let bottomContentConstraint = scanConfigurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        let leadingContentConstraint = scanConfigurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
+        let trailingContentConstraint = scanConfigurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+        
+        NSLayoutConstraint.activate([topContentConstraint, bottomContentConstraint, leadingContentConstraint, trailingContentConstraint])
     }
-    */
+    
+    // MARK: - Actions
+    
+    @objc func doneButtonTapped(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+}
 
+extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+    }
 }

@@ -9,27 +9,27 @@
 import UIKit
 
 class ScanTicketViewController: UIViewController {
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        // set navigation items
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(ScanTicketViewController.manualSearchButtonTapped(_:)))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = .green
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //MARK: - Actions
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func manualSearchButtonTapped(_ sender: Any) {
+        let manualSearchViewController = ManualSearchViewController()
+        self.navigationController?.pushViewController(manualSearchViewController, animated: true)
     }
-    */
-
 }
