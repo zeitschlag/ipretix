@@ -13,6 +13,18 @@ class EventOverviewViewController: UIViewController {
     var noEventView: NoEventView? // this is not a nice way, there must be something better!
     var eventOverviewView: EventOverviewView?
     
+    let appConfigurationManager: AppConfigurationManager
+    
+    init(withAppConfigurationManager: AppConfigurationManager) {
+        self.appConfigurationManager = withAppConfigurationManager
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
@@ -55,8 +67,8 @@ class EventOverviewViewController: UIViewController {
     }
     
     func updateViewVisibility() {
-        //TODO: Read Configuration
-        let eventConfigured = true
+
+        let eventConfigured = self.appConfigurationManager.currentAppConfiguration != nil
         
         if eventConfigured == true {
             self.eventOverviewView?.isHidden = false
@@ -94,7 +106,7 @@ class EventOverviewViewController: UIViewController {
     
     // MARK: - Actions
     @objc func configureAppButtonTapped(_ sender: Any) {
-        let scanConfigurationCodeViewController = ScanConfigurationViewController()
+        let scanConfigurationCodeViewController = ScanConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager)
         self.navigationController?.present(UINavigationController(rootViewController: scanConfigurationCodeViewController), animated: true, completion: nil)
     }
     

@@ -13,6 +13,16 @@ class ScanConfigurationViewController: UIViewController {
     
     var doneButton: UIBarButtonItem?
     var scanConfigurationView: ScanConfigurationView?
+    let appConfigurationManager: AppConfigurationManager
+    
+    init(withAppConfigurationManager: AppConfigurationManager) {
+        self.appConfigurationManager = withAppConfigurationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -58,6 +68,13 @@ class ScanConfigurationViewController: UIViewController {
 
 extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+
+        //TODO: Read the configuration-things from the camera-QRcode-json
+        let appConfiguration = AppConfiguration(allowSearch: true, showInfo: true, urlString: "https://staging.pretix.eu", secret: "supersecretpassword")
+        
+        self.appConfigurationManager.newAppConfigurationAvailable(appConfiguration)
+
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
     }
 }

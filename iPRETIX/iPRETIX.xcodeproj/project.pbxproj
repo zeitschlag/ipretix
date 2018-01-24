@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */; };
+		D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88059E4200FD44200F9680A /* AppConfiguration.swift */; };
 		D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A44200A6B90009830C6 /* AppDelegate.swift */; };
 		D8A12A4E200A6B90009830C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A12A4D200A6B90009830C6 /* Assets.xcassets */; };
 		D8A12A51200A6B90009830C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A12A4F200A6B90009830C6 /* LaunchScreen.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationManager.swift; sourceTree = "<group>"; };
+		D88059E4200FD44200F9680A /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D8A12A41200A6B90009830C6 /* iPRETIX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPRETIX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A12A44200A6B90009830C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A12A4D200A6B90009830C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +76,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D824D1692017D3F10067F3C8 /* AppConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				D88059E4200FD44200F9680A /* AppConfiguration.swift */,
+				D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */,
+			);
+			path = AppConfiguration;
+			sourceTree = "<group>";
+		};
+		D88059E3200FD43400F9680A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D824D1692017D3F10067F3C8 /* AppConfiguration */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D8A12A38200A6B90009830C6 = {
 			isa = PBXGroup;
 			children = (
@@ -143,8 +164,8 @@
 		D8A12A69200A9731009830C6 /* Data & Connectivity */ = {
 			isa = PBXGroup;
 			children = (
+				D88059E3200FD43400F9680A /* Models */,
 				D8A12A9D200CDC5A009830C6 /* Sync */,
-				D8A12A9C200CDC33009830C6 /* Models */,
 				D8A12A95200CD8A5009830C6 /* CoreDataStack.swift */,
 			);
 			path = "Data & Connectivity";
@@ -208,13 +229,6 @@
 				D8A12A99200CDB88009830C6 /* iPRETIX.xcdatamodeld */,
 			);
 			path = "Core Data";
-			sourceTree = "<group>";
-		};
-		D8A12A9C200CDC33009830C6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		D8A12A9D200CDC5A009830C6 /* Sync */ = {
@@ -329,12 +343,14 @@
 				D8A12A9F200CF639009830C6 /* ScanConfigurationViewController.swift in Sources */,
 				D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */,
 				D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */,
+				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,
 				D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */,
 				D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */,
 				D8A12AA1200CF902009830C6 /* ScanTicketViewController.swift in Sources */,
+				D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */,
 				D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */,
 				D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */,
 			);
