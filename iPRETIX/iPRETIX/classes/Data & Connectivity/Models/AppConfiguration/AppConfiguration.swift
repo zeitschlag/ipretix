@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppConfiguration {
+class AppConfiguration: Codable {
     
     var urlString: String
     var showInfo: Bool
@@ -21,5 +21,15 @@ class AppConfiguration {
         self.urlString = urlString
         self.secret = secret
     }
+        
+    //MARK: - Codable
     
+    enum CodingKeys: String, CodingKey {
+        
+        case urlString = "url"
+        case secret = "key"
+        case showInfo = "show_info"
+        case allowSearch = "allow_search"
+
+    }
 }

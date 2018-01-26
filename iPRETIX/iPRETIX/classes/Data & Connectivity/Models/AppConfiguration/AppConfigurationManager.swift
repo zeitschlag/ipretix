@@ -52,7 +52,8 @@ class AppConfigurationManager {
                 assertionFailure("No item found")
                 return
         }
-        print("Found app configuration: allowSearch: \(allowSearch), showInfo: \(showInfo), urlString: \(urlString), secret: \(secret)")
+        
+        //print("Found app configuration: allowSearch: \(allowSearch), showInfo: \(showInfo), urlString: \(urlString), secret: \(secret)")
         currentAppConfiguration = AppConfiguration(allowSearch: allowSearch, showInfo: showInfo, urlString: urlString, secret: secret)
 
     }
@@ -81,8 +82,6 @@ class AppConfigurationManager {
         let queryDict: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                         kSecMatchLimit as String: kSecMatchLimitOne,
                                         kSecAttrAccount as String: KeyChainKey.account,
-                                        kSecReturnAttributes as String: false,
-                                        kSecReturnData as String: false
         ]
 
         
@@ -94,19 +93,44 @@ class AppConfigurationManager {
         if SecItemCopyMatching(dict as CFDictionary, nil) == errSecSuccess {
             let status = SecItemUpdate(queryDict as CFDictionary, attributesToUpdate as CFDictionary)
             if status != errSecSuccess {
-                assertionFailure("Updating failed. Please check Keychain-thing, osstatus: \(status)")
+                print("Updating failed. Please check Keychain-thing, osstatus: \(status)")
+                assertionFailure()
             }
         } else {
             let status = SecItemAdd(dict as CFDictionary, nil)
             if status != errSecSuccess {
-                assertionFailure("Creating failed. Please check Keychain-thing, osstatus: \(status)")
+                assertionFailure("Creating failed. Please check Keychain-thing, https://www.osstatus.com/search/results?platform=all&framework=all&search=\(status)")
             }
-            
         }
     }
 
     func newAppConfigurationAvailable(_ appConfiguration: AppConfiguration) {
         self.currentAppConfiguration = appConfiguration
         self.saveCurrentAppConfiguration()
+    }
+    
+    func deleteCurrentAppConfiguration() {
+        guard let currentAppConfiguration = self.currentAppConfiguration else {
+            return
+        }
+        
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.showInfoKey)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.allowSearchKey)
+        
+        let queryDict: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                        kSecAttrAccount as String: KeyChainKey.account,
+                                        kSecAttrServer as String: currentAppConfiguration.urlString
+        ]
+        
+        let status = SecItemDelete(queryDict as CFDictionary)
+        
+        if status != errSecSuccess {
+            print("Deleting failed. Please check Keychain-thing, https://www.osstatus.com/search/results?platform=all&framework=all&search=\(status)")
+            assertionFailure()
+            return
+        } else {
+            self.currentAppConfiguration = nil
+        }
+
     }
 }
