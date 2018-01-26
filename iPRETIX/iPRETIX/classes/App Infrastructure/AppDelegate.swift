@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         
-        window.rootViewController = UINavigationController(rootViewController: EventOverviewViewController())
+        let appConfigurationManager = AppConfigurationManager()
+        appConfigurationManager.loadAppConfiguration()
+        
+        window.rootViewController = UINavigationController(rootViewController: EventOverviewViewController(withAppConfigurationManager: appConfigurationManager))
         window.makeKeyAndVisible()
         
         return true

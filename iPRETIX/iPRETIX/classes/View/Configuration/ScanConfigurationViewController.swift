@@ -13,6 +13,19 @@ class ScanConfigurationViewController: UIViewController {
     
     var doneButton: UIBarButtonItem?
     var scanConfigurationView: ScanConfigurationView?
+    let appConfigurationManager: AppConfigurationManager
+    
+    var captureSession: AVCaptureSession?
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    init(withAppConfigurationManager: AppConfigurationManager) {
+        self.appConfigurationManager = withAppConfigurationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -30,6 +43,13 @@ class ScanConfigurationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setupQRCodeReder()
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -54,10 +74,74 @@ class ScanConfigurationViewController: UIViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    private func setupQRCodeReder() {
+
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+            assertionFailure("Check CaptureDevice")
+            return
+        }
+        
+        guard let scanConfigurationView = self.scanConfigurationView else {
+            assertionFailure("Check scanConfigurationView")
+            return
+        }
+        
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            let output = AVCaptureMetadataOutput()
+            
+            let captureSession = AVCaptureSession()
+            captureSession.addInput(input)
+            captureSession.addOutput(output)
+            
+            let dispatchQueue = DispatchQueue(label: "Capture Queue")
+            output.setMetadataObjectsDelegate(self, queue: dispatchQueue)
+            output.metadataObjectTypes = [.qr]
+            
+            let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer.videoGravity = .resizeAspectFill
+            videoPreviewLayer.frame = scanConfigurationView.cameraView.frame
+            scanConfigurationView.cameraView.layer.addSublayer(videoPreviewLayer)
+
+            self.videoPreviewLayer = videoPreviewLayer
+            self.captureSession = captureSession
+            
+            self.captureSession?.startRunning()
+            
+        } catch let error {
+            assertionFailure("Error setting up QR-Reader: \(error.localizedDescription)")
+            return
+        }
+    }
+    
 }
 
 extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+        
+        guard metadataObjects.count > 0 else {
+            return
+        }
+        
+        guard let metaDataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject else {
+            return
+        }
+        
+        if metaDataObject.type == .qr, let stringValue = metaDataObject.stringValue, let dataValue = stringValue.data(using: .utf8) {
+            do {
+                let decodedAppConfiguration = try JSONDecoder().decode(AppConfiguration.self, from: dataValue)
+                self.appConfigurationManager.deleteCurrentAppConfiguration()
+                self.appConfigurationManager.newAppConfigurationAvailable(decodedAppConfiguration)
+                OperationQueue.main.addOperation {
+                    self.scanConfigurationView?.appConfiguredSuccessfully()
+                    self.captureSession?.stopRunning()
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+                }
+            } catch let error {
+                print(error)
+                assertionFailure("Scanning failed")
+                return
+            }
+        }
     }
 }

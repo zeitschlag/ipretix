@@ -36,7 +36,8 @@ class ScanConfigurationView: UIView {
         
         self.addSubview(cameraView)
         self.addSubview(bottomView)
-        self.backgroundColor = .blue
+        
+        self.backgroundColor = .white
         
     }
     
@@ -79,5 +80,9 @@ class ScanConfigurationView: UIView {
         
         NSLayoutConstraint.activate(constraints)
         
+    }
+    
+    func appConfiguredSuccessfully() {
+        self.resultLabel.text = NSLocalizedString("App erfolgreich konfiguriert", comment: "")
     }
 }
