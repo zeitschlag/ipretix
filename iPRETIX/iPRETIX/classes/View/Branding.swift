@@ -18,20 +18,32 @@ class Branding {
     private let pretixWhiteColor = UIColor.white
     private let pretixGreenColor = UIColor(red: 43.0/255.0, green: 74.0/255.0, blue: 28.0/255.0, alpha: 1.0) //#2B4A1C
     
-    var whiteTextColor: UIColor {
+    var lightTextColor: UIColor {
         return self.pretixWhiteColor
     }
     
-    var purpleTextColor: UIColor {
+    var darkTextColor: UIColor {
         return self.pretixPurpleColor
     }
     
     var defaultButtonTextColor: UIColor {
-        return self.purpleTextColor
+        return self.darkTextColor
     }
     
     var defaultBackgroundColor: UIColor {
         return self.pretixWhiteColor
+    }
+    
+    var darkBackgroundColor: UIColor {
+        return self.pretixPurpleColor
+    }
+    
+    var confirmationBackgroundColor: UIColor {
+        return self.pretixGreenColor
+    }
+    
+    var confirmationTextColor: UIColor {
+        return self.lightTextColor
     }
 
     //MARK: - Fonts
@@ -47,6 +59,10 @@ class Branding {
     private var largeFontBold = UIFont.systemFont(ofSize: 24.0, weight: .bold)
     
     var defaultButtonFont: UIFont {
+        return self.largeFontBold
+    }
+    
+    var largeLabelFont: UIFont {
         return self.largeFontBold
     }
     

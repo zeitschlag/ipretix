@@ -30,7 +30,7 @@ class ScanConfigurationViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let scanConfigurationView = ScanConfigurationView(frame: .zero)
+        let scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
         self.scanConfigurationView = scanConfigurationView
         
         self.view.addSubview(scanConfigurationView)

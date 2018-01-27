@@ -15,19 +15,28 @@ class ScanConfigurationView: UIView {
     var bottomView: UIView
     var resultLabel: UILabel
     
-    override init(frame: CGRect) {
+    let branding: Branding
+    
+    init(withBranding branding: Branding) {
+
+        self.branding = branding
         
         self.cameraView = UIView(frame: .zero)
         
         self.bottomView = UIView(frame: .zero)
-        self.bottomView.backgroundColor = .purple
+        self.bottomView.backgroundColor = self.branding.darkBackgroundColor
         
         self.resultLabel = UILabel(frame: .zero)
         self.resultLabel.text = NSLocalizedString("please scan a configuration code", comment: "")
+        
+        self.resultLabel.numberOfLines = 0
+        self.resultLabel.textAlignment = .center
+        self.resultLabel.font = self.branding.largeLabelFont
+        self.resultLabel.textColor = self.branding.lightTextColor
 
         bottomView.addSubview(resultLabel)
         
-        super.init(frame: frame)
+        super.init(frame: CGRect.zero)
         
         self.cameraView.translatesAutoresizingMaskIntoConstraints = false
         self.bottomView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +46,7 @@ class ScanConfigurationView: UIView {
         self.addSubview(cameraView)
         self.addSubview(bottomView)
         
-        self.backgroundColor = .white
+        self.backgroundColor = branding.defaultBackgroundColor
         
     }
     
@@ -64,7 +73,7 @@ class ScanConfigurationView: UIView {
         let bottomBottomConstraint = self.bottomView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         
         //FIXME: Remove this
-        let bottomHeightConstraint = NSLayoutConstraint(item: self.bottomView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 60.0)
+        let bottomHeightConstraint = NSLayoutConstraint(item: self.bottomView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 144.0)
         constraints.append(bottomHeightConstraint)
         
         constraints.append(bottomTopConstraint)
@@ -74,15 +83,24 @@ class ScanConfigurationView: UIView {
         
         let resultLabelCenterXConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .centerX, relatedBy: .equal, toItem: self.bottomView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         let resultLabelCenterYConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .centerY, relatedBy: .equal, toItem: self.bottomView, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+        let resultLabelLeadingConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: self.bottomView, attribute: .leading, multiplier: 1.0, constant: 60.0)
         
         constraints.append(resultLabelCenterXConstraint)
         constraints.append(resultLabelCenterYConstraint)
+        constraints.append(resultLabelLeadingConstraint)
         
         NSLayoutConstraint.activate(constraints)
         
     }
     
     func appConfiguredSuccessfully() {
-        self.resultLabel.text = NSLocalizedString("App erfolgreich konfiguriert", comment: "")
+        UIView.animate(withDuration: 0.5) {
+            self.bottomView.backgroundColor = self.branding.confirmationBackgroundColor
+            
+            self.resultLabel.text = NSLocalizedString("App erfolgreich konfiguriert", comment: "")
+            self.resultLabel.textColor = self.branding.confirmationTextColor
+        }
+        
+        
     }
 }
