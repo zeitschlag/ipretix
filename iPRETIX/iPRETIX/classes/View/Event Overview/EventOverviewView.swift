@@ -11,12 +11,15 @@ import UIKit
 class EventOverviewView: UIView {
     var scanTicketsButton: UIButton
     
-    override init(frame: CGRect) {
+    init(withBranding branding: Branding) {
+        
         self.scanTicketsButton = UIButton(type: .system)
         let scanTicketsButtonTitle = NSLocalizedString("Scan Tickets", comment: "")
         self.scanTicketsButton.setTitle(scanTicketsButtonTitle, for: .normal)
+        self.scanTicketsButton.titleLabel?.font = branding.defaultButtonFont
+        self.scanTicketsButton.setTitleColor(branding.defaultButtonTextColor, for: .normal)
         
-        super.init(frame: frame)
+        super.init(frame: CGRect.zero)
         
         self.scanTicketsButton.translatesAutoresizingMaskIntoConstraints = false
         self.translatesAutoresizingMaskIntoConstraints = false

@@ -84,11 +84,11 @@ class EventOverviewViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let noEventView = NoEventView(frame: .zero)
+        let noEventView = NoEventView(withBranding: Branding.shared)
         noEventView.configureAppButton.addTarget(self, action: #selector(EventOverviewViewController.configureAppButtonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(noEventView)
         
-        let eventOverviewView = EventOverviewView(frame: .zero)
+        let eventOverviewView = EventOverviewView(withBranding: Branding.shared)
         eventOverviewView.scanTicketsButton.addTarget(self, action: #selector(EventOverviewViewController.scanTicketsButtonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(eventOverviewView)
         

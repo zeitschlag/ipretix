@@ -12,15 +12,18 @@ class NoEventView: UIView {
 
     let configureAppButton: UIButton
     
-    override init(frame: CGRect) {
+    init(withBranding branding: Branding) {
         
         let configureAppButtonTitle = NSLocalizedString("App konfigurieren", comment: "")
+        
         configureAppButton = UIButton(type: .system)
         configureAppButton.setTitle(configureAppButtonTitle, for: .normal)
+        configureAppButton.titleLabel?.font = branding.defaultButtonFont
+        configureAppButton.setTitleColor(branding.defaultButtonTextColor, for: .normal)
+
+        super.init(frame: CGRect.zero)
         
-        super.init(frame: frame)
-        
-        self.backgroundColor = .white
+        self.backgroundColor = branding.defaultBackgroundColor
         
         self.translatesAutoresizingMaskIntoConstraints = false
         self.configureAppButton.translatesAutoresizingMaskIntoConstraints = false

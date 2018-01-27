@@ -23,6 +23,7 @@
 		D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA8200D0112009830C6 /* EventOverviewView.swift */; };
 		D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAA200D011C009830C6 /* NoEventView.swift */; };
 		D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */; };
+		D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B00BBE201CCA9900EBA466 /* Branding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D8A12AA8200D0112009830C6 /* EventOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewView.swift; sourceTree = "<group>"; };
 		D8A12AAA200D011C009830C6 /* NoEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventView.swift; sourceTree = "<group>"; };
 		D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanConfigurationView.swift; sourceTree = "<group>"; };
+		D8B00BBE201CCA9900EBA466 /* Branding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				D8A12A6E200CD30A009830C6 /* Search */,
 				D8A12A6D200CD304009830C6 /* Scan Ticket */,
 				D8A12A6C200CD2FF009830C6 /* Configuration */,
+				D8B00BBE201CCA9900EBA466 /* Branding.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
+				D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,
 				D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */,
 				D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */,
