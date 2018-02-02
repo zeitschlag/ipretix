@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="Ticket" representedClassName="Ticket" syncable="YES" codeGenerationType="class">
+        <attribute name="attendeeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attention" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemName" attributeType="String" syncable="YES"/>
+        <attribute name="orderCode" attributeType="String" syncable="YES"/>
+        <attribute name="paid" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="redeemed" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="secret" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ticket" positionX="-45" positionY="0" width="128" height="150"/>
+    </elements>
 </model>
