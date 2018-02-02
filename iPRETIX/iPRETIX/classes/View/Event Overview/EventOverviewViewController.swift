@@ -14,9 +14,11 @@ class EventOverviewViewController: UIViewController {
     var eventOverviewView: EventOverviewView?
     
     let appConfigurationManager: AppConfigurationManager
+    let syncManager: SyncManager
     
-    init(withAppConfigurationManager: AppConfigurationManager) {
+    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
         self.appConfigurationManager = withAppConfigurationManager
+        self.syncManager = andSyncManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -106,7 +108,7 @@ class EventOverviewViewController: UIViewController {
     
     // MARK: - Actions
     @objc func configureAppButtonTapped(_ sender: Any) {
-        let scanConfigurationCodeViewController = ScanConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager)
+        let scanConfigurationCodeViewController = ScanConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager, andSyncManager: self.syncManager)
         self.navigationController?.present(UINavigationController(rootViewController: scanConfigurationCodeViewController), animated: true, completion: nil)
     }
     
