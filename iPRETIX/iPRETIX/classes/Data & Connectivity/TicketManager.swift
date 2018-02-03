@@ -42,14 +42,24 @@ class TicketManager {
         }
     }
     
+    func deleteTicket(withOrderCode orderCode: String) throws {
+        let fetchRequest: NSFetchRequest<Ticket> = Ticket.fetchRequest()
+        
+        let predicate = NSPredicate(format: "orderCode = %@", orderCode)
+        fetchRequest.predicate = predicate
+        
+        for ticket in try coreDataStack.persistentContainer.viewContext.fetch(fetchRequest) {
+            self.coreDataStack.persistentContainer.viewContext.delete(ticket)
+        }
+        
+        try self.coreDataStack.saveContext()
+        
+    }
+    
     func redeemTicket(withOrderCode orderCode: String) {
         //TODO: get ticket with a certain order code
         // redeem it
         // save it
-    }
-    
-    func deleteTicket(withOrderCode orderCode: String) {
-        //TODO: Implement
     }
     
 }
