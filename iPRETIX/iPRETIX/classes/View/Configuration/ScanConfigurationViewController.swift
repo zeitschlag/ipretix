@@ -13,69 +13,36 @@ class ScanConfigurationViewController: UIViewController {
     
     var doneButton: UIBarButtonItem?
     var scanConfigurationView: ScanConfigurationView?
+    //TODO: Add a loading view with a loading-indicator
+    
     let appConfigurationManager: AppConfigurationManager
+    let syncManager: SyncManager
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
-    init(withAppConfigurationManager: AppConfigurationManager) {
+    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
         self.appConfigurationManager = withAppConfigurationManager
+        self.syncManager = andSyncManager
+        
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadStarted(_:)), name: SyncManager.Notifications.TicketDownloadStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadSucceeded(_:)), name: SyncManager.Notifications.TicketDownloadSucceed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadFailed(_:)), name: SyncManager.Notifications.TicketDownloadFailed, object: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        super.loadView()
-        
-        let scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
-        self.scanConfigurationView = scanConfigurationView
-        
-        self.view.addSubview(scanConfigurationView)
-
-        // there must be a better way to define the navigationItems than doing this in the viewDidLoad/loadView
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        setupQRCodeReder()
-
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        guard let scanConfigurationView = self.scanConfigurationView else {
-            assertionFailure("Check scanConfigurationView")
-            return
-        }
-        
-        let topContentConstraint = scanConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let bottomContentConstraint = scanConfigurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        let leadingContentConstraint = scanConfigurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
-        let trailingContentConstraint = scanConfigurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        
-        NSLayoutConstraint.activate([topContentConstraint, bottomContentConstraint, leadingContentConstraint, trailingContentConstraint])
-    }
-    
-    // MARK: - Actions
-    
-    @objc func doneButtonTapped(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupQRCodeReder() {
-
+        
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             assertionFailure("Check CaptureDevice")
             return
@@ -102,7 +69,7 @@ class ScanConfigurationViewController: UIViewController {
             videoPreviewLayer.videoGravity = .resizeAspectFill
             videoPreviewLayer.frame = scanConfigurationView.cameraView.frame
             scanConfigurationView.cameraView.layer.addSublayer(videoPreviewLayer)
-
+            
             self.videoPreviewLayer = videoPreviewLayer
             self.captureSession = captureSession
             
@@ -111,6 +78,96 @@ class ScanConfigurationViewController: UIViewController {
         } catch let error {
             assertionFailure("Error setting up QR-Reader: \(error.localizedDescription)")
             return
+        }
+    }
+    
+    //MARK: - View Lifecycle
+    
+    override func loadView() {
+        super.loadView()
+        
+        let scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
+        self.scanConfigurationView = scanConfigurationView
+        
+        self.view.addSubview(scanConfigurationView)
+        
+        // there must be a better way to define the navigationItems than doing this in the viewDidLoad/loadView
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setupQRCodeReder()
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let scanConfigurationView = self.scanConfigurationView else {
+            assertionFailure("Check scanConfigurationView")
+            return
+        }
+        
+        let topContentConstraint = scanConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+        let bottomContentConstraint = scanConfigurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        let leadingContentConstraint = scanConfigurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
+        let trailingContentConstraint = scanConfigurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+        
+        NSLayoutConstraint.activate([topContentConstraint, bottomContentConstraint, leadingContentConstraint, trailingContentConstraint])
+    }
+    
+    // MARK: - Actions
+    
+    @objc func doneButtonTapped(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Notifications
+    
+    @objc func syncManagerTicketDownloadStarted(_ notification: Notification) {
+        //TODO: Show loading indicator
+    }
+    
+    @objc func syncManagerTicketDownloadSucceeded(_ notification: Notification) {
+        //TODO: Hide Loading Indicator
+        OperationQueue.main.addOperation {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        
+    }
+    
+    @objc func syncManagerTicketDownloadFailed(_ notification: Notification) {
+        //TODO: Hide Loading Indicator
+        
+        guard let userInfo = notification.userInfo as? [String: String], let localizedErrorDescription = userInfo[SyncManager.Notifications.UserInfo.ErrorDescriptionKey] else {
+            preconditionFailure("Check User Info/No error message")
+            return
+        }
+        
+        let alertTitle = NSLocalizedString("An Error Occurred", comment: "")
+        let alertMessage = localizedErrorDescription
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okActionTitle = NSLocalizedString("OK", comment: "")
+        let okAction = UIAlertAction(title: okActionTitle, style: .default) { (_) in
+            OperationQueue.main.addOperation {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        alert.addAction(okAction)
+        
+        OperationQueue.main.addOperation {
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -132,10 +189,14 @@ extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegat
                 let decodedAppConfiguration = try JSONDecoder().decode(AppConfiguration.self, from: dataValue)
                 self.appConfigurationManager.deleteCurrentAppConfiguration()
                 self.appConfigurationManager.newAppConfigurationAvailable(decodedAppConfiguration)
+
+                self.captureSession?.stopRunning()
+                
+                self.syncManager.downloadTickets()
+                
                 OperationQueue.main.addOperation {
                     self.scanConfigurationView?.appConfiguredSuccessfully()
-                    self.captureSession?.stopRunning()
-                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ScanConfigurationViewController.doneButtonTapped(_:)))
+                    self.navigationItem.rightBarButtonItem = nil
                 }
             } catch let error {
                 print(error)

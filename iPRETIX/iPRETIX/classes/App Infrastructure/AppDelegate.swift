@@ -24,7 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appConfigurationManager = AppConfigurationManager()
         appConfigurationManager.loadAppConfiguration()
         
-        window.rootViewController = UINavigationController(rootViewController: EventOverviewViewController(withAppConfigurationManager: appConfigurationManager))
+    
+        let ticketManager = TicketManager(withCoreDataStack: self.coreDataStack)
+        let pretixAPI = PretixAPI(configurationManager: appConfigurationManager)
+        
+        let syncManager = SyncManager(withTicketManager: ticketManager, andAPI: pretixAPI)
+        
+        let eventOverviewViewController = EventOverviewViewController(withAppConfigurationManager: appConfigurationManager, andSyncManager: syncManager)
+        window.rootViewController = UINavigationController(rootViewController: eventOverviewViewController)
         window.makeKeyAndVisible()
         
         return true
