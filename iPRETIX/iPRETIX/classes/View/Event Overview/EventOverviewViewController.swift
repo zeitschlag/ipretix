@@ -15,10 +15,13 @@ class EventOverviewViewController: UIViewController {
     
     let appConfigurationManager: AppConfigurationManager
     let syncManager: SyncManager
+    let ticketManager: TicketManager
     
-    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
+    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager, andTicketManager: TicketManager) {
+        
         self.appConfigurationManager = withAppConfigurationManager
         self.syncManager = andSyncManager
+        self.ticketManager = andTicketManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -113,7 +116,7 @@ class EventOverviewViewController: UIViewController {
     }
     
     @objc func scanTicketsButtonTapped(_ sender: Any) {
-        let scanTicketViewController = ScanTicketViewController()
+        let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager)
         self.navigationController?.pushViewController(scanTicketViewController, animated: true)
     }
     

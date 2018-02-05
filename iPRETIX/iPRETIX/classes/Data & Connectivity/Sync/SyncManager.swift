@@ -71,7 +71,7 @@ class SyncManager {
                     if existingOrderCodes.contains(downloadedTicket.orderCode) == true {
                        
                         // update existing one
-                        self.ticketManager.deleteTicket(withOrderCode: downloadedTicket.orderCode)
+                        try self.ticketManager.deleteTicket(withOrderCode: downloadedTicket.orderCode)
                         try self.ticketManager.insertNewTicket(withOrderCode: downloadedTicket.orderCode,
                                                            itemName: downloadedTicket.item,
                                                            attendeeName: downloadedTicket.attendeeName,
@@ -98,7 +98,7 @@ class SyncManager {
                 
                 // delete the rest
                 for removedTicketCode in existingOrderCodes {
-                    self.ticketManager.deleteTicket(withOrderCode: removedTicketCode)
+                    try self.ticketManager.deleteTicket(withOrderCode: removedTicketCode)
                 }
                 
                 NotificationCenter.default.post(name: Notifications.TicketDownloadSucceed, object: self)

@@ -12,7 +12,7 @@ import AVFoundation
 class ScanConfigurationViewController: UIViewController {
     
     var doneButton: UIBarButtonItem?
-    var scanConfigurationView: ScanConfigurationView?
+    var scanConfigurationView: ScanConfigurationView
     //TODO: Add a loading view with a loading-indicator
     
     let appConfigurationManager: AppConfigurationManager
@@ -22,8 +22,11 @@ class ScanConfigurationViewController: UIViewController {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
+        
         self.appConfigurationManager = withAppConfigurationManager
         self.syncManager = andSyncManager
+        
+        self.scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
         
         super.init(nibName: nil, bundle: nil)
         
@@ -41,15 +44,10 @@ class ScanConfigurationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    private func setupQRCodeReder() {
+    private func setupQRCodeReader() {
         
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             assertionFailure("Check CaptureDevice")
-            return
-        }
-        
-        guard let scanConfigurationView = self.scanConfigurationView else {
-            assertionFailure("Check scanConfigurationView")
             return
         }
         
@@ -67,7 +65,7 @@ class ScanConfigurationViewController: UIViewController {
             
             let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer.videoGravity = .resizeAspectFill
-            videoPreviewLayer.frame = scanConfigurationView.cameraView.frame
+            videoPreviewLayer.frame = self.scanConfigurationView.cameraView.frame
             scanConfigurationView.cameraView.layer.addSublayer(videoPreviewLayer)
             
             self.videoPreviewLayer = videoPreviewLayer
@@ -86,9 +84,6 @@ class ScanConfigurationViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
-        self.scanConfigurationView = scanConfigurationView
-        
         self.view.addSubview(scanConfigurationView)
         
         // there must be a better way to define the navigationItems than doing this in the viewDidLoad/loadView
@@ -104,22 +99,17 @@ class ScanConfigurationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        setupQRCodeReder()
+        setupQRCodeReader()
         
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        guard let scanConfigurationView = self.scanConfigurationView else {
-            assertionFailure("Check scanConfigurationView")
-            return
-        }
-        
-        let topContentConstraint = scanConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let bottomContentConstraint = scanConfigurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        let leadingContentConstraint = scanConfigurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
-        let trailingContentConstraint = scanConfigurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+        let topContentConstraint = self.scanConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+        let bottomContentConstraint = self.scanConfigurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        let leadingContentConstraint = self.scanConfigurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
+        let trailingContentConstraint = self.scanConfigurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         
         NSLayoutConstraint.activate([topContentConstraint, bottomContentConstraint, leadingContentConstraint, trailingContentConstraint])
     }
@@ -149,7 +139,6 @@ class ScanConfigurationViewController: UIViewController {
         
         guard let userInfo = notification.userInfo as? [String: String], let localizedErrorDescription = userInfo[SyncManager.Notifications.UserInfo.ErrorDescriptionKey] else {
             preconditionFailure("Check User Info/No error message")
-            return
         }
         
         let alertTitle = NSLocalizedString("An Error Occurred", comment: "")
@@ -195,7 +184,7 @@ extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegat
                 self.syncManager.downloadTickets()
                 
                 OperationQueue.main.addOperation {
-                    self.scanConfigurationView?.appConfiguredSuccessfully()
+                    self.scanConfigurationView.appConfiguredSuccessfully()
                     self.navigationItem.rightBarButtonItem = nil
                 }
             } catch let error {

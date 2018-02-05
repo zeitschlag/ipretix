@@ -10,6 +10,7 @@
 		D81952D22024FE90001454F6 /* PretixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952D12024FE90001454F6 /* PretixAPI.swift */; };
 		D81952DA20250557001454F6 /* TicketDownloadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952D920250557001454F6 /* TicketDownloadResponse.swift */; };
 		D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952DB202505EE001454F6 /* TicketDownloadContent.swift */; };
+		D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82177612026113C00DB34D0 /* ScanTicketView.swift */; };
 		D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
 		D8735E6820244D6900201215 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* SyncManager.swift */; };
@@ -45,6 +46,7 @@
 		D81952D12024FE90001454F6 /* PretixAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixAPI.swift; sourceTree = "<group>"; };
 		D81952D920250557001454F6 /* TicketDownloadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDownloadResponse.swift; sourceTree = "<group>"; };
 		D81952DB202505EE001454F6 /* TicketDownloadContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDownloadContent.swift; sourceTree = "<group>"; };
+		D82177612026113C00DB34D0 /* ScanTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketView.swift; sourceTree = "<group>"; };
 		D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationManager.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		D8735E6720244D6900201215 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A12AA0200CF902009830C6 /* ScanTicketViewController.swift */,
+				D82177612026113C00DB34D0 /* ScanTicketView.swift */,
 			);
 			path = "Scan Ticket";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
 				D8735E6820244D6900201215 /* SyncManager.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
+				D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
 				D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,

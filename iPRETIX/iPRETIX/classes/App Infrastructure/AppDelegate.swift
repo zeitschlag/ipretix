@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let syncManager = SyncManager(withTicketManager: ticketManager, andAPI: pretixAPI)
         
-        let eventOverviewViewController = EventOverviewViewController(withAppConfigurationManager: appConfigurationManager, andSyncManager: syncManager)
+        let eventOverviewViewController = EventOverviewViewController(withAppConfigurationManager: appConfigurationManager, andSyncManager: syncManager, andTicketManager: ticketManager)
         window.rootViewController = UINavigationController(rootViewController: eventOverviewViewController)
         window.makeKeyAndVisible()
         
