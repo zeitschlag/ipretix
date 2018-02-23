@@ -19,6 +19,11 @@ class ScanTicketViewController: UIViewController {
     
     private var qrCodeDetected = false
     
+    struct DelayBetweenTwoScans {
+        static let standard: UInt64 = 3
+        static let noDelay: UInt64 = 0
+    }
+    
     init(withTicketManager: TicketManager) {
         
         self.scanTicketView = ScanTicketView(withBranding: Branding.shared)
@@ -151,8 +156,7 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func ticketAlreadyRedeemed(_ ticket: Ticket) {
         self.videoPreviewLayer?.connection?.isEnabled = false
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .alreadyRedeemed)
-        //TODO: Add Delay, otherwise doesn't scanning work like expected
-        self.continueScanningWithDelay()
+        self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.standard)
     }
     
     private func ticketValidWithRequirements(_ ticket: Ticket) {
@@ -160,7 +164,7 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .validWithRequirements)
         let attentionAlert = UIAlertController(title: nil, message: NSLocalizedString("Special Ticket", comment: ""), preferredStyle: .alert)
         let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (_) in
-            self.continueScanningWithDelay()
+            self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.noDelay)
         }
         
         attentionAlert.addAction(okAction)
@@ -170,13 +174,11 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func ticketValid(_ ticket: Ticket) {
         self.videoPreviewLayer?.connection?.isEnabled = false
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .valid)
-        self.continueScanningWithDelay()
+        self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.standard)
     }
     
-    private func continueScanningWithDelay() {
+    private func continueScanning(withDelayInSeconds delayInSeconds: UInt64) {
         
-        //TODO: Make configurable?
-        let delayInSeconds: UInt64 = 5
         let delay = DispatchTime(uptimeNanoseconds: DispatchTime.now().uptimeNanoseconds + delayInSeconds*NSEC_PER_SEC)
         
         DispatchQueue.main.asyncAfter(deadline: delay) {
