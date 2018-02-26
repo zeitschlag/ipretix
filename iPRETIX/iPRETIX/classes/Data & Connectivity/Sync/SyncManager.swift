@@ -14,7 +14,7 @@ class SyncManager {
         //MARK: - Ticket Download
         static let TicketDownloadStarted = Notification.Name("SyncManager.TicketDownloadStartedNotification")
         static let TicketDownloadFailed = Notification.Name("SyncManager.TicketDownloadFailedNotification")
-        static let TicketDownloadSucceed = Notification.Name("SyncManager.TicketDownloadSucceededNotification")
+        static let TicketDownloadSucceeded = Notification.Name("SyncManager.TicketDownloadSucceededNotification")
         
         //MARK: - CheckIn aka Upload
         static let CheckInUploadStarted = Notification.Name("SyncManager.CheckInUploadStartedNotification")

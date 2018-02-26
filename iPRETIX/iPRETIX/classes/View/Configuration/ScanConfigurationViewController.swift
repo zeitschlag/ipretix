@@ -31,7 +31,7 @@ class ScanConfigurationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadStarted(_:)), name: SyncManager.Notifications.TicketDownloadStarted, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadSucceeded(_:)), name: SyncManager.Notifications.TicketDownloadSucceed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadSucceeded(_:)), name: SyncManager.Notifications.TicketDownloadSucceeded, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScanConfigurationViewController.syncManagerTicketDownloadFailed(_:)), name: SyncManager.Notifications.TicketDownloadFailed, object: nil)
         
     }
