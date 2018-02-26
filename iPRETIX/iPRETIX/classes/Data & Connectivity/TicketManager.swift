@@ -11,6 +11,13 @@ import CoreData
 
 class TicketManager {
     
+    enum TicketRedeemingResult {
+        case valid
+        case validWithRequirements
+        case alreadyRedeemed
+        case error(localizedDescription: String)
+    }
+    
     let coreDataStack: CoreDataStack
     
     private let fetchTicketRequest: NSFetchRequest<Ticket> = Ticket.fetchRequest()
@@ -35,11 +42,7 @@ class TicketManager {
         newTicket.paid = paid
         newTicket.secret = secret
         
-        do {
-            try coreDataStack.saveContext()
-        } catch {
-            print(error.localizedDescription)
-        }
+        try coreDataStack.saveContext()
     }
     
     func deleteTicket(withOrderCode orderCode: String) throws {
@@ -56,10 +59,44 @@ class TicketManager {
         
     }
     
-    func redeemTicket(withOrderCode orderCode: String) {
-        //TODO: get ticket with a certain order code
+    func redeemTicket(_ ticket: Ticket) -> TicketRedeemingResult {
         // redeem it
         // save it
+
+        do {
+            
+            guard ticket.redeemed == false else {
+                return .alreadyRedeemed
+            }
+            
+            ticket.redeemed = true
+            
+            try self.coreDataStack.saveContext()
+            
+            if ticket.attention == true {
+                return .validWithRequirements
+            }
+            
+            return .valid
+        } catch {
+            return .error(localizedDescription: error.localizedDescription)
+        }
+        
+        
+    }
+    
+    func ticket(withSecret secret: String) throws -> Ticket? {
+        
+        let filteredTicket = try getAllTickets().filter({ (ticket) -> Bool in
+            return ticket.secret == secret
+        })
+        
+        guard filteredTicket.count <= 1, let ticket = filteredTicket.first else {
+            return nil
+        }
+        
+        return ticket
+        
     }
     
 }

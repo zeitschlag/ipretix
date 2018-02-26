@@ -15,10 +15,13 @@ class EventOverviewViewController: UIViewController {
     
     let appConfigurationManager: AppConfigurationManager
     let syncManager: SyncManager
+    let ticketManager: TicketManager
     
-    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
+    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager, andTicketManager: TicketManager) {
+        
         self.appConfigurationManager = withAppConfigurationManager
         self.syncManager = andSyncManager
+        self.ticketManager = andTicketManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -113,18 +116,9 @@ class EventOverviewViewController: UIViewController {
     }
     
     @objc func scanTicketsButtonTapped(_ sender: Any) {
-        let scanTicketViewController = ScanTicketViewController()
+        let checkInManager = CheckInManager(withCoreDataStack: CoreDataStack.shared)
+        let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager, andCheckInManager: checkInManager, andSyncManager: self.syncManager)
         self.navigationController?.pushViewController(scanTicketViewController, animated: true)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

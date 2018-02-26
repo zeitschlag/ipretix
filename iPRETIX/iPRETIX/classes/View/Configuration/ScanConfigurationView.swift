@@ -96,11 +96,8 @@ class ScanConfigurationView: UIView {
     func appConfiguredSuccessfully() {
         UIView.animate(withDuration: 0.5) {
             self.bottomView.backgroundColor = self.branding.confirmationBackgroundColor
-            
             self.resultLabel.text = NSLocalizedString("App erfolgreich konfiguriert", comment: "")
             self.resultLabel.textColor = self.branding.confirmationTextColor
         }
-        
-        
     }
 }
