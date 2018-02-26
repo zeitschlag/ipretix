@@ -116,18 +116,9 @@ class EventOverviewViewController: UIViewController {
     }
     
     @objc func scanTicketsButtonTapped(_ sender: Any) {
-        let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager)
+        let checkInManager = CheckInManager(withCoreDataStack: CoreDataStack.shared)
+        let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager, andCheckInManager: checkInManager, andSyncManager: self.syncManager)
         self.navigationController?.pushViewController(scanTicketViewController, animated: true)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

@@ -42,11 +42,7 @@ class TicketManager {
         newTicket.paid = paid
         newTicket.secret = secret
         
-        do {
-            try coreDataStack.saveContext()
-        } catch {
-            print(error.localizedDescription)
-        }
+        try coreDataStack.saveContext()
     }
     
     func deleteTicket(withOrderCode orderCode: String) throws {

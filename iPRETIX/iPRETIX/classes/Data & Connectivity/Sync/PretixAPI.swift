@@ -31,5 +31,19 @@ class PretixAPI {
      
         return nil
     }
+    
+    var uploadEndpointUrl: URL? {
+        guard let urlString = self.configurationManager.currentAppConfiguration?.urlString, let secret = self.configurationManager.currentAppConfiguration?.secret else {
+            return nil
+        }
+        
+        let uploadURLString = urlString + "/redeem/?key=\(secret)"
+        
+        if let url = URL(string: uploadURLString) {
+            return url
+        }
+        
+        return nil
+    }
         
 }

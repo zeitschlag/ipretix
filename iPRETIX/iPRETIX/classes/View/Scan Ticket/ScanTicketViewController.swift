@@ -12,6 +12,8 @@ import AVFoundation
 class ScanTicketViewController: UIViewController {
     
     let ticketManager: TicketManager
+    let checkinManager: CheckInManager
+    let syncManager: SyncManager
     let scanTicketView: ScanTicketView
     
     var captureSession: AVCaptureSession?
@@ -24,12 +26,23 @@ class ScanTicketViewController: UIViewController {
         static let noDelay: UInt64 = 0
     }
     
-    init(withTicketManager: TicketManager) {
+    //TODO: Add an option for this
+    let shouldUploadImmediately = true
+    
+    init(withTicketManager: TicketManager, andCheckInManager: CheckInManager, andSyncManager: SyncManager) {
         
         self.scanTicketView = ScanTicketView(withBranding: Branding.shared)
         self.ticketManager = withTicketManager
-        
+        self.checkinManager = andCheckInManager
+        self.syncManager = andSyncManager
+    
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadStarted(_:)), name: SyncManager.Notifications.CheckInUploadStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadFailed(_:)), name: SyncManager.Notifications.CheckInUploadFailed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadIncomplete(_:)), name: SyncManager.Notifications.CheckInUploadIncomplete, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadSucceeded(_:)), name: SyncManager.Notifications.CheckInUploadSucceeded, object: nil)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,6 +119,32 @@ class ScanTicketViewController: UIViewController {
         let manualSearchViewController = ManualSearchViewController()
         self.navigationController?.pushViewController(manualSearchViewController, animated: true)
     }
+    
+    //MARK: - Notifications
+    
+    @objc func checkInUploadStarted(_ notification: Notification) {
+        guard self.shouldUploadImmediately == true else {
+            return
+        }
+    }
+    
+    @objc func checkInUploadFailed(_ notification: Notification) {
+        guard self.shouldUploadImmediately == true else {
+            return
+        }
+    }
+    
+    @objc func checkInUploadIncomplete(_ notification: Notification) {
+        guard self.shouldUploadImmediately == true else {
+            return
+        }
+    }
+    
+    @objc func checkInUploadSucceeded(_ notification: Notification) {
+        guard self.shouldUploadImmediately == true else {
+            return
+        }
+    }
 }
 
 extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
@@ -129,6 +168,7 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
             
             do {
                 guard let ticket = try self.ticketManager.ticket(withSecret: secret) else {
+                    assertionFailure("No ticket with secret \(secret)")
                     return
                 }
                 
@@ -164,6 +204,18 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .validWithRequirements)
         let attentionAlert = UIAlertController(title: nil, message: NSLocalizedString("Special Ticket", comment: ""), preferredStyle: .alert)
         let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (_) in
+            
+            if let secret = ticket.secret {
+                do {
+                    let checkIn = try self.checkinManager.insertNewCheckIn(withDateTime: Date(), secret: secret)
+                    if self.shouldUploadImmediately == true {
+                        self.syncManager.upload(checkIn: checkIn)
+                    }
+                } catch {
+                    //TODO: Error Handling
+                }
+            }
+            
             self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.noDelay)
         }
         
@@ -174,18 +226,32 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func ticketValid(_ ticket: Ticket) {
         self.videoPreviewLayer?.connection?.isEnabled = false
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .valid)
+        
+        if let secret = ticket.secret {
+            let checkIn = try! self.checkinManager.insertNewCheckIn(withDateTime: Date(), secret: secret)
+            if self.shouldUploadImmediately == true {
+                self.syncManager.upload(checkIn: checkIn)
+            }
+        }
+        
         self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.standard)
     }
     
     private func continueScanning(withDelayInSeconds delayInSeconds: UInt64) {
         
         let delay = DispatchTime(uptimeNanoseconds: DispatchTime.now().uptimeNanoseconds + delayInSeconds*NSEC_PER_SEC)
+        //FIXME: 200_000_000 nanoseconds == 0.2 seconds. We need this for animation
+        let continueScanningDelay = DispatchTime(uptimeNanoseconds: delay.uptimeNanoseconds+200_000_000)
         
         DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.qrCodeDetected = false
             self.videoPreviewLayer?.connection?.isEnabled = true
             self.scanTicketView.resetBottomView()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: continueScanningDelay) {
+            self.qrCodeDetected = false
+        }
+        
     }
     
 }

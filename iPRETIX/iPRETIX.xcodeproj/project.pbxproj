@@ -10,9 +10,11 @@
 		D81952D22024FE90001454F6 /* PretixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952D12024FE90001454F6 /* PretixAPI.swift */; };
 		D81952DA20250557001454F6 /* TicketDownloadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952D920250557001454F6 /* TicketDownloadResponse.swift */; };
 		D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952DB202505EE001454F6 /* TicketDownloadContent.swift */; };
+		D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */; };
 		D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82177612026113C00DB34D0 /* ScanTicketView.swift */; };
 		D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
+		D8735E622024498E00201215 /* CheckInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E612024498E00201215 /* CheckInManager.swift */; };
 		D8735E6820244D6900201215 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* SyncManager.swift */; };
 		D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88059E4200FD44200F9680A /* AppConfiguration.swift */; };
 		D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A44200A6B90009830C6 /* AppDelegate.swift */; };
@@ -46,9 +48,11 @@
 		D81952D12024FE90001454F6 /* PretixAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixAPI.swift; sourceTree = "<group>"; };
 		D81952D920250557001454F6 /* TicketDownloadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDownloadResponse.swift; sourceTree = "<group>"; };
 		D81952DB202505EE001454F6 /* TicketDownloadContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDownloadContent.swift; sourceTree = "<group>"; };
+		D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInUploadResponse.swift; sourceTree = "<group>"; };
 		D82177612026113C00DB34D0 /* ScanTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketView.swift; sourceTree = "<group>"; };
 		D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationManager.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
+		D8735E612024498E00201215 /* CheckInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInManager.swift; sourceTree = "<group>"; };
 		D8735E6720244D6900201215 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		D88059E4200FD44200F9680A /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D8A12A41200A6B90009830C6 /* iPRETIX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPRETIX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +103,14 @@
 			path = Download;
 			sourceTree = "<group>";
 		};
+		D81AB98D204342F4004A07E0 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		D824D1692017D3F10067F3C8 /* AppConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +123,7 @@
 		D88059E3200FD43400F9680A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D81AB98D204342F4004A07E0 /* Upload */,
 				D81952D720250546001454F6 /* Download */,
 				D824D1692017D3F10067F3C8 /* AppConfiguration */,
 			);
@@ -193,6 +206,7 @@
 				D8A12A9D200CDC5A009830C6 /* Sync */,
 				D8A12A95200CD8A5009830C6 /* CoreDataStack.swift */,
 				D86DF201202064300062052D /* TicketManager.swift */,
+				D8735E612024498E00201215 /* CheckInManager.swift */,
 			);
 			path = "Data & Connectivity";
 			sourceTree = "<group>";
@@ -372,6 +386,7 @@
 				D8A12A9F200CF639009830C6 /* ScanConfigurationViewController.swift in Sources */,
 				D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */,
 				D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */,
+				D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */,
 				D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */,
 				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
 				D8735E6820244D6900201215 /* SyncManager.swift in Sources */,
@@ -389,6 +404,7 @@
 				D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */,
 				D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */,
 				D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */,
+				D8735E622024498E00201215 /* CheckInManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
