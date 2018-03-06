@@ -13,6 +13,7 @@
 		D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */; };
 		D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82177612026113C00DB34D0 /* ScanTicketView.swift */; };
 		D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */; };
+		D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
 		D8735E622024498E00201215 /* CheckInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E612024498E00201215 /* CheckInManager.swift */; };
 		D8735E6820244D6900201215 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* SyncManager.swift */; };
@@ -51,6 +52,7 @@
 		D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInUploadResponse.swift; sourceTree = "<group>"; };
 		D82177612026113C00DB34D0 /* ScanTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketView.swift; sourceTree = "<group>"; };
 		D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationManager.swift; sourceTree = "<group>"; };
+		D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		D8735E612024498E00201215 /* CheckInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInManager.swift; sourceTree = "<group>"; };
 		D8735E6720244D6900201215 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				D8A12A9E200CF639009830C6 /* ScanConfigurationViewController.swift */,
 				D8A12AA2200CF90F009830C6 /* ConfigurationViewController.swift */,
 				D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */,
+				D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */,
 				D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */,
 				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
+				D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */,
 				D8735E6820244D6900201215 /* SyncManager.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */,

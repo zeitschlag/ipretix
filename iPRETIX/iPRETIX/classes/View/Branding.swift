@@ -55,8 +55,6 @@ class Branding {
     var errorTextColor: UIColor {
         return UIColor.black
     }
-    
-    
 
     //MARK: - Fonts
     

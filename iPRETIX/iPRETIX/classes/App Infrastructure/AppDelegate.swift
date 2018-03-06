@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appConfigurationManager = AppConfigurationManager()
         appConfigurationManager.loadAppConfiguration()
-        
-    
+
         let ticketManager = TicketManager(withCoreDataStack: self.coreDataStack)
         let checkInManager = CheckInManager(withCoreDataStack: self.coreDataStack)
         let pretixAPI = PretixAPI(configurationManager: appConfigurationManager)
