@@ -9,7 +9,9 @@
 import UIKit
 
 class ConfigurationView: UIView {
-    var deleteCurrentConfigurationButton: UIButton
+    
+    let deleteCurrentConfigurationButton: UIButton
+    let contentStackView: UIStackView
     
     override init(frame: CGRect) {
         
@@ -17,16 +19,21 @@ class ConfigurationView: UIView {
         
         self.deleteCurrentConfigurationButton = UIButton(type: .system)
         self.deleteCurrentConfigurationButton.setTitle(NSLocalizedString("Reset current Configuration", comment: ""), for: .normal)
-        self.deleteCurrentConfigurationButton.setTitleColor(branding.defaultButtonTextColor, for: .normal)
+        self.deleteCurrentConfigurationButton.setTitleColor(branding.destructiveButtonTextColor, for: .normal)
         self.deleteCurrentConfigurationButton.translatesAutoresizingMaskIntoConstraints = false
+        self.deleteCurrentConfigurationButton.titleLabel?.font = branding.smallButtonFont
         
+        self.contentStackView = UIStackView(arrangedSubviews: [])
+        self.contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentStackView.alignment = .top
         
         super.init(frame: frame)
         
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = branding.defaultBackgroundColor
         
-        self.addSubview(self.deleteCurrentConfigurationButton)
+        self.contentStackView.addArrangedSubview(self.deleteCurrentConfigurationButton)
+        self.addSubview(self.contentStackView)
 
     }
     
@@ -35,12 +42,12 @@ class ConfigurationView: UIView {
         
         var constraints = [NSLayoutConstraint]()
         
-        let buttonTopConstraint = self.deleteCurrentConfigurationButton.topAnchor.constraint(equalTo: self.topAnchor)
-        let buttonLeadingConstraint = self.deleteCurrentConfigurationButton.leadingAnchor.constraint(equalTo: self.leadingAnchor)
-        let buttonTrailingConstraint = self.deleteCurrentConfigurationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        let buttonHeightConstraint = NSLayoutConstraint(item: self.deleteCurrentConfigurationButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 44.0)
+        let stackViewTopConstraint = self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0)
+        let stackViewLeadingConstraint = self.contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        let stackViewTrailingConstraint = self.contentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        let stackViewBottomConstraint = self.contentStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         
-        constraints.append(contentsOf: [buttonTopConstraint, buttonLeadingConstraint, buttonTrailingConstraint, buttonHeightConstraint])
+        constraints.append(contentsOf: [stackViewTopConstraint, stackViewLeadingConstraint, stackViewTrailingConstraint, stackViewBottomConstraint])
         
         NSLayoutConstraint.activate(constraints)
     }
