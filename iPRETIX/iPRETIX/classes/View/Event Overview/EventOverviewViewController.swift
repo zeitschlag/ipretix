@@ -96,6 +96,7 @@ class EventOverviewViewController: UIViewController {
         let eventOverviewView = EventOverviewView(withBranding: Branding.shared)
         eventOverviewView.scanTicketsButton.addTarget(self, action: #selector(EventOverviewViewController.scanTicketsButtonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(eventOverviewView)
+        eventOverviewView.openConfigurationButton.addTarget(self, action: #selector(EventOverviewViewController.openConfigurationButtonTapped(_:)), for: .touchUpInside)
         
         self.noEventView = noEventView
         self.eventOverviewView = eventOverviewView
@@ -119,6 +120,11 @@ class EventOverviewViewController: UIViewController {
         let checkInManager = CheckInManager(withCoreDataStack: CoreDataStack.shared)
         let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager, andCheckInManager: checkInManager, andSyncManager: self.syncManager)
         self.navigationController?.pushViewController(scanTicketViewController, animated: true)
+    }
+    
+    @objc func openConfigurationButtonTapped(_ sender: Any) {
+        let configurationViewController = ConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager)
+        self.navigationController?.pushViewController(configurationViewController, animated: true)
     }
     
 }

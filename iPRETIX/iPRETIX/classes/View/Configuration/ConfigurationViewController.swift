@@ -9,27 +9,67 @@
 import UIKit
 
 class ConfigurationViewController: UIViewController {
+    
+    private let configurationView: ConfigurationView
+    
+    private let appConfigurationManager: AppConfigurationManager
+    
+    init(withAppConfigurationManager: AppConfigurationManager) {
+        
+        self.configurationView = ConfigurationView()
+        self.appConfigurationManager = withAppConfigurationManager
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.configurationView.deleteCurrentConfigurationButton.addTarget(self, action: #selector(ConfigurationViewController.deleteCurrentConfigurationButtonTapped(_:)), for: .touchUpInside)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func loadView() {
+        super.loadView()
 
-    /*
-    // MARK: - Navigation
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        self.view.addSubview(self.configurationView)
     }
-    */
-
+    
+    override func viewWillLayoutSubviews() {
+        
+        super.viewWillLayoutSubviews()
+        
+        let topConstraint = self.configurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+        let leadingConstriant = self.configurationView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
+        let trailingConstriant = self.configurationView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+        let bottomConstraint = self.configurationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        
+        NSLayoutConstraint.activate([topConstraint, leadingConstriant, trailingConstriant, bottomConstraint])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Actions
+    
+    @objc private func deleteCurrentConfigurationButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: NSLocalizedString("Delete current Configuration?", comment: ""), message: nil, preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { (action) in
+            
+            self.appConfigurationManager.deleteCurrentAppConfiguration()
+            
+            OperationQueue.main.addOperation {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }

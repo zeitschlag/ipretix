@@ -32,6 +32,10 @@ class Branding {
         return self.darkTextColor
     }
     
+    var destructiveButtonTextColor: UIColor {
+        return UIColor.red
+    }
+    
     var defaultBackgroundColor: UIColor {
         return self.pretixWhiteColor
     }
@@ -55,8 +59,6 @@ class Branding {
     var errorTextColor: UIColor {
         return UIColor.black
     }
-    
-    
 
     //MARK: - Fonts
     
@@ -72,6 +74,10 @@ class Branding {
     
     var defaultButtonFont: UIFont {
         return self.largeFontBold
+    }
+    
+    var smallButtonFont: UIFont {
+        return self.defaultFontBold
     }
 
     var defaultLabelFont: UIFont {
