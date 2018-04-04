@@ -1,5 +1,7 @@
 # iPRETIX
 
+**Development happens mostly at [GitLab](https://gitlab.com/zeitschlag/ipretix/issues) at the moment. It is [planned to move to Github](https://gitlab.com/zeitschlag/ipretix/issues/14) in the near future. So: Please consider this repo WIP. Thanks.**
+
 ## Goals for 1.0
 
 universal iOS-app to scan and validate pretix-tickets
