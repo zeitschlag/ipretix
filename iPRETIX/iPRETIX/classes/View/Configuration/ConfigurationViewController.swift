@@ -22,7 +22,10 @@ class ConfigurationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.configurationView.deleteCurrentConfigurationButton.addTarget(self, action: #selector(ConfigurationViewController.deleteCurrentConfigurationButtonTapped(_:)), for: .touchUpInside)
-
+        
+        self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControlEvents.valueChanged)
+        
+        self.title = NSLocalizedString("Configuration", comment: "")
     }
     
     override func loadView() {
@@ -72,4 +75,7 @@ class ConfigurationViewController: UIViewController {
         
     }
     
+    @objc private func toggleUploadImmediately(sender: Any) {
+        
+    }
 }
