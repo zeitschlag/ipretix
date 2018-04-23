@@ -33,6 +33,7 @@
 		D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAA200D011C009830C6 /* NoEventView.swift */; };
 		D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */; };
 		D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B00BBE201CCA9900EBA466 /* Branding.swift */; };
+		D8BE30C0208E80FF0075DC0C /* LocalAppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BE30BF208E80FF0075DC0C /* LocalAppSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		D8A12AAA200D011C009830C6 /* NoEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventView.swift; sourceTree = "<group>"; };
 		D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanConfigurationView.swift; sourceTree = "<group>"; };
 		D8B00BBE201CCA9900EBA466 /* Branding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branding.swift; sourceTree = "<group>"; };
+		D8BE30BF208E80FF0075DC0C /* LocalAppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAppSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				D88059E4200FD44200F9680A /* AppConfiguration.swift */,
 				D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */,
+				D8BE30BF208E80FF0075DC0C /* LocalAppSettings.swift */,
 			);
 			path = AppConfiguration;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */,
 				D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */,
 				D81952D22024FE90001454F6 /* PretixAPI.swift in Sources */,
+				D8BE30C0208E80FF0075DC0C /* LocalAppSettings.swift in Sources */,
 				D8A12AA7200CF963009830C6 /* ManualSearchViewController.swift in Sources */,
 				D81952DA20250557001454F6 /* TicketDownloadResponse.swift in Sources */,
 				D86DF202202064310062052D /* TicketManager.swift in Sources */,

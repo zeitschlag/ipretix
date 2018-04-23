@@ -11,6 +11,7 @@ import UIKit
 class ConfigurationViewController: UIViewController {
     
     private let configurationView: ConfigurationView
+    private let appSettings = LocalAppSettings()
     
     private let appConfigurationManager: AppConfigurationManager
     
@@ -22,6 +23,8 @@ class ConfigurationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.configurationView.deleteCurrentConfigurationButton.addTarget(self, action: #selector(ConfigurationViewController.deleteCurrentConfigurationButtonTapped(_:)), for: .touchUpInside)
+        
+        self.configurationView.uploadImmediatelySwitch.isOn = self.appSettings.uploadImmediately
         
         self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControlEvents.valueChanged)
         
@@ -76,6 +79,11 @@ class ConfigurationViewController: UIViewController {
     }
     
     @objc private func toggleUploadImmediately(sender: Any) {
+        guard let uploadSwitch = sender as? UISwitch else {
+            assertionFailure("No switch")
+            return
+        }
         
+        self.appSettings.uploadImmediately = uploadSwitch.isOn
     }
 }
