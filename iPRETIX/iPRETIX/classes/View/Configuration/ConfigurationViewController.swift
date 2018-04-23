@@ -33,6 +33,7 @@ class ConfigurationViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
+        self.view.backgroundColor = Branding.shared.defaultBackgroundColor
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 
         self.view.addSubview(self.configurationView)

@@ -19,6 +19,8 @@ class ScanTicketViewController: UIViewController {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    let branding = Branding.shared
+    
     private var qrCodeDetected = false
     
     struct DelayBetweenTwoScans {
@@ -55,6 +57,7 @@ class ScanTicketViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.view.addSubview(self.scanTicketView)
+        self.view.backgroundColor = self.branding.defaultBackgroundColor
         
         // set navigation items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(ScanTicketViewController.manualSearchButtonTapped(_:)))
