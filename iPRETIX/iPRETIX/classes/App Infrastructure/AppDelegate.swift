@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         
-        let appConfigurationManager = AppConfigurationManager()
+        let appConfigurationManager = PretixConfigurationManager()
         appConfigurationManager.loadAppConfiguration()
 
         let ticketManager = TicketManager(withCoreDataStack: self.coreDataStack)

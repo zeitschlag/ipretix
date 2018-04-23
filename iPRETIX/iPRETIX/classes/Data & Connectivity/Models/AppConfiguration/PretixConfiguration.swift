@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppConfiguration: Codable {
+class PretixConfiguration: Codable {
     
     var urlString: String
     var showInfo: Bool

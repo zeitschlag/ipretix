@@ -11,11 +11,10 @@ import UIKit
 class ConfigurationViewController: UIViewController {
     
     private let configurationView: ConfigurationView
+    private let appConfigurationManager: PretixConfigurationManager
     private let appSettings = LocalAppSettings()
     
-    private let appConfigurationManager: AppConfigurationManager
-    
-    init(withAppConfigurationManager: AppConfigurationManager) {
+    init(withAppConfigurationManager: PretixConfigurationManager) {
         
         self.configurationView = ConfigurationView()
         self.appConfigurationManager = withAppConfigurationManager

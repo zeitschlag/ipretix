@@ -12,12 +12,12 @@
 		D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81952DB202505EE001454F6 /* TicketDownloadContent.swift */; };
 		D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */; };
 		D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82177612026113C00DB34D0 /* ScanTicketView.swift */; };
-		D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */; };
+		D824D16C2017D4070067F3C8 /* PretixConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* PretixConfigurationManager.swift */; };
 		D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
 		D8735E622024498E00201215 /* CheckInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E612024498E00201215 /* CheckInManager.swift */; };
 		D8735E6820244D6900201215 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* SyncManager.swift */; };
-		D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88059E4200FD44200F9680A /* AppConfiguration.swift */; };
+		D88059E5200FD44200F9680A /* PretixConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88059E4200FD44200F9680A /* PretixConfiguration.swift */; };
 		D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A44200A6B90009830C6 /* AppDelegate.swift */; };
 		D8A12A4E200A6B90009830C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A12A4D200A6B90009830C6 /* Assets.xcassets */; };
 		D8A12A51200A6B90009830C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A12A4F200A6B90009830C6 /* LaunchScreen.storyboard */; };
@@ -52,12 +52,12 @@
 		D81952DB202505EE001454F6 /* TicketDownloadContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDownloadContent.swift; sourceTree = "<group>"; };
 		D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInUploadResponse.swift; sourceTree = "<group>"; };
 		D82177612026113C00DB34D0 /* ScanTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketView.swift; sourceTree = "<group>"; };
-		D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationManager.swift; sourceTree = "<group>"; };
+		D824D16B2017D4070067F3C8 /* PretixConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixConfigurationManager.swift; sourceTree = "<group>"; };
 		D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		D8735E612024498E00201215 /* CheckInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInManager.swift; sourceTree = "<group>"; };
 		D8735E6720244D6900201215 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
-		D88059E4200FD44200F9680A /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		D88059E4200FD44200F9680A /* PretixConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixConfiguration.swift; sourceTree = "<group>"; };
 		D8A12A41200A6B90009830C6 /* iPRETIX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPRETIX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A12A44200A6B90009830C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A12A4D200A6B90009830C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 		D824D1692017D3F10067F3C8 /* AppConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				D88059E4200FD44200F9680A /* AppConfiguration.swift */,
-				D824D16B2017D4070067F3C8 /* AppConfigurationManager.swift */,
+				D88059E4200FD44200F9680A /* PretixConfiguration.swift */,
+				D824D16B2017D4070067F3C8 /* PretixConfigurationManager.swift */,
 				D8BE30BF208E80FF0075DC0C /* LocalAppSettings.swift */,
 			);
 			path = AppConfiguration;
@@ -394,7 +394,7 @@
 				D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */,
 				D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */,
 				D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */,
-				D88059E5200FD44200F9680A /* AppConfiguration.swift in Sources */,
+				D88059E5200FD44200F9680A /* PretixConfiguration.swift in Sources */,
 				D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */,
 				D8735E6820244D6900201215 /* SyncManager.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
@@ -409,7 +409,7 @@
 				D86DF202202064310062052D /* TicketManager.swift in Sources */,
 				D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */,
 				D8A12AA1200CF902009830C6 /* ScanTicketViewController.swift in Sources */,
-				D824D16C2017D4070067F3C8 /* AppConfigurationManager.swift in Sources */,
+				D824D16C2017D4070067F3C8 /* PretixConfigurationManager.swift in Sources */,
 				D8A12A96200CD8A5009830C6 /* CoreDataStack.swift in Sources */,
 				D8A12AA3200CF90F009830C6 /* ConfigurationViewController.swift in Sources */,
 				D8735E622024498E00201215 /* CheckInManager.swift in Sources */,

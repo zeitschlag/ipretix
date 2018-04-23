@@ -13,11 +13,11 @@ class EventOverviewViewController: UIViewController {
     var noEventView: NoEventView? // this is not a nice way, there must be something better!
     var eventOverviewView: EventOverviewView?
     
-    let appConfigurationManager: AppConfigurationManager
+    let appConfigurationManager: PretixConfigurationManager
     let syncManager: SyncManager
     let ticketManager: TicketManager
     
-    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager, andTicketManager: TicketManager) {
+    init(withAppConfigurationManager: PretixConfigurationManager, andSyncManager: SyncManager, andTicketManager: TicketManager) {
         
         self.appConfigurationManager = withAppConfigurationManager
         self.syncManager = andSyncManager
