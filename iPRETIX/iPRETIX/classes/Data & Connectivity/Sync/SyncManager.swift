@@ -32,10 +32,15 @@ class SyncManager {
     let checkInManager: CheckInManager
     let api: PretixAPI
     
+    var syncTimer: Timer?
+    let syncTimerInterval: TimeInterval = 60 // seconds
+    
     init(withTicketManager: TicketManager, andCheckInManager: CheckInManager, andAPI: PretixAPI) {
         self.ticketManager = withTicketManager
         self.checkInManager = andCheckInManager
         self.api = andAPI
+        
+        self.setupTimer()
     }
     
     func downloadTickets() {
@@ -71,8 +76,8 @@ class SyncManager {
                 
                 // use ticket manager to parse tickets
                 // add new ones, delete deleted ones, update existing ones
-                var existingOrderCodes = try self.ticketManager.getAllTickets().map({ (ticket) -> String in
-                    return ticket.orderCode!
+                var existingOrderCodes = try self.ticketManager.getAllTickets().compactMap({ (ticket) -> String? in
+                    return ticket.orderCode
                 })
                 
                 for downloadedTicket in ticketDownloadResponse.results {
@@ -201,6 +206,34 @@ class SyncManager {
     }
     
     // download conference status
-    // sync on a regular basis
+    private func setupTimer() {
+        let settings = LocalAppSettings()
+        if settings.uploadImmediately == true {
+            self.syncTimer?.invalidate()
+            self.syncTimer = nil
+        } else {
+            self.syncTimer = Timer.scheduledTimer(timeInterval: self.syncTimerInterval, target: self, selector: #selector(self.syncTimerFired), userInfo: nil, repeats: true)
+        }
+    }
     
+    func uploadImmediatelyToggled() {
+        self.setupTimer()
+    }
+    
+    @objc private func syncTimerFired() {
+        do {
+            
+            let checkIns = try self.checkInManager.getAllCheckIns()
+            
+            for checkin in checkIns {
+                self.upload(checkIn: checkin)
+            }
+            
+            self.downloadTickets()
+            
+        } catch {
+            NSLog("Could not upload checkIns")
+            assertionFailure()
+        }
+    }
 }

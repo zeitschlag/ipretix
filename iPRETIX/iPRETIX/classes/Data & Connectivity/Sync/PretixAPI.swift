@@ -10,10 +10,10 @@ import Foundation
 
 class PretixAPI {
     
-    let configurationManager: AppConfigurationManager
+    let configurationManager: PretixConfigurationManager
     var shared: PretixAPI?
     
-    init(configurationManager: AppConfigurationManager) {
+    init(configurationManager: PretixConfigurationManager) {
         self.configurationManager = configurationManager
     }
     

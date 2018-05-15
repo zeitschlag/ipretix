@@ -15,13 +15,13 @@ class ScanConfigurationViewController: UIViewController {
     var scanConfigurationView: ScanConfigurationView
     //TODO: Add a loading view with a loading-indicator
     
-    let appConfigurationManager: AppConfigurationManager
+    let appConfigurationManager: PretixConfigurationManager
     let syncManager: SyncManager
     
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
-    init(withAppConfigurationManager: AppConfigurationManager, andSyncManager: SyncManager) {
+    init(withAppConfigurationManager: PretixConfigurationManager, andSyncManager: SyncManager) {
         
         self.appConfigurationManager = withAppConfigurationManager
         self.syncManager = andSyncManager
@@ -175,7 +175,7 @@ extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegat
         
         if metaDataObject.type == .qr, let stringValue = metaDataObject.stringValue, let dataValue = stringValue.data(using: .utf8) {
             do {
-                let decodedAppConfiguration = try JSONDecoder().decode(AppConfiguration.self, from: dataValue)
+                let decodedAppConfiguration = try JSONDecoder().decode(PretixConfiguration.self, from: dataValue)
                 self.appConfigurationManager.deleteCurrentAppConfiguration()
                 self.appConfigurationManager.newAppConfigurationAvailable(decodedAppConfiguration)
 

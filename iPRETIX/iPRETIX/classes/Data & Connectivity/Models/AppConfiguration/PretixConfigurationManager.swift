@@ -8,13 +8,13 @@
 
 import Foundation
 
-class AppConfigurationManager {
+class PretixConfigurationManager {
 
-    private(set) var currentAppConfiguration: AppConfiguration?
+    private(set) var currentAppConfiguration: PretixConfiguration?
     
     private struct UserDefaultKeys {
-        static let allowSearchKey = "iPretixAllowSearchKey"
-        static let showInfoKey = "iPretixShowInfoKey"
+        static let allowSearch = "iPretixAllowSearchKey"
+        static let showInfo = "iPretixShowInfoKey"
     }
 
     private struct KeyChainKey {
@@ -24,8 +24,8 @@ class AppConfigurationManager {
     
     func loadAppConfiguration() {
         
-        let showInfo = UserDefaults.standard.bool(forKey: UserDefaultKeys.showInfoKey)
-        let allowSearch = UserDefaults.standard.bool(forKey: UserDefaultKeys.allowSearchKey)
+        let showInfo = UserDefaults.standard.bool(forKey: UserDefaultKeys.showInfo)
+        let allowSearch = UserDefaults.standard.bool(forKey: UserDefaultKeys.allowSearch)
 
         let queryDict: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                         kSecMatchLimit as String: kSecMatchLimitOne,
@@ -53,8 +53,8 @@ class AppConfigurationManager {
                 return
         }
         
-        //print("Found app configuration: allowSearch: \(allowSearch), showInfo: \(showInfo), urlString: \(urlString), secret: \(secret)")
-        currentAppConfiguration = AppConfiguration(allowSearch: allowSearch, showInfo: showInfo, urlString: urlString, secret: secret)
+        //print("Found app configuration: allowSearch: \(allowSearch), showInfo: \(showInfo), urlString: \(urlString), secret: \(secret), uploadImmediately: \(uploadImmediately)")
+        currentAppConfiguration = PretixConfiguration(allowSearch: allowSearch, showInfo: showInfo, urlString: urlString, secret: secret)
 
     }
     
@@ -63,8 +63,8 @@ class AppConfigurationManager {
             return
         }
         
-        UserDefaults.standard.set(currentAppConfiguration.showInfo, forKey: UserDefaultKeys.showInfoKey)
-        UserDefaults.standard.set(currentAppConfiguration.allowSearch, forKey: UserDefaultKeys.allowSearchKey)
+        UserDefaults.standard.set(currentAppConfiguration.showInfo, forKey: UserDefaultKeys.showInfo)
+        UserDefaults.standard.set(currentAppConfiguration.allowSearch, forKey: UserDefaultKeys.allowSearch)
 
         guard let secretData = currentAppConfiguration.secret.data(using: .utf8) else {
             assertionFailure("Please check key")
@@ -93,8 +93,7 @@ class AppConfigurationManager {
         if SecItemCopyMatching(dict as CFDictionary, nil) == errSecSuccess {
             let status = SecItemUpdate(queryDict as CFDictionary, attributesToUpdate as CFDictionary)
             if status != errSecSuccess {
-                print("Updating failed. Please check Keychain-thing, osstatus: \(status)")
-                assertionFailure()
+                assertionFailure("Creating failed. Please check Keychain-thing, https://www.osstatus.com/search/results?platform=all&framework=all&search=\(status)")
             }
         } else {
             let status = SecItemAdd(dict as CFDictionary, nil)
@@ -104,7 +103,7 @@ class AppConfigurationManager {
         }
     }
 
-    func newAppConfigurationAvailable(_ appConfiguration: AppConfiguration) {
+    func newAppConfigurationAvailable(_ appConfiguration: PretixConfiguration) {
         self.currentAppConfiguration = appConfiguration
         self.saveCurrentAppConfiguration()
     }
@@ -114,8 +113,8 @@ class AppConfigurationManager {
             return
         }
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.showInfoKey)
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.allowSearchKey)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.showInfo)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.allowSearch)
         
         let queryDict: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                         kSecAttrAccount as String: KeyChainKey.account,
@@ -131,6 +130,5 @@ class AppConfigurationManager {
         } else {
             self.currentAppConfiguration = nil
         }
-
     }
 }

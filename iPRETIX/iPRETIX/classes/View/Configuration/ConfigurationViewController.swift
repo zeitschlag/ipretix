@@ -11,23 +11,31 @@ import UIKit
 class ConfigurationViewController: UIViewController {
     
     private let configurationView: ConfigurationView
+    private let appConfigurationManager: PretixConfigurationManager
+    private let appSettings = LocalAppSettings()
+    private let syncManager: SyncManager
     
-    private let appConfigurationManager: AppConfigurationManager
-    
-    init(withAppConfigurationManager: AppConfigurationManager) {
+    init(withAppConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
         
         self.configurationView = ConfigurationView()
         self.appConfigurationManager = withAppConfigurationManager
+        self.syncManager = syncManager
         
         super.init(nibName: nil, bundle: nil)
         
         self.configurationView.deleteCurrentConfigurationButton.addTarget(self, action: #selector(ConfigurationViewController.deleteCurrentConfigurationButtonTapped(_:)), for: .touchUpInside)
-
+        
+        self.configurationView.uploadImmediatelySwitch.isOn = self.appSettings.uploadImmediately
+        
+        self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControlEvents.valueChanged)
+        
+        self.title = NSLocalizedString("Configuration", comment: "")
     }
     
     override func loadView() {
         super.loadView()
 
+        self.view.backgroundColor = Branding.shared.defaultBackgroundColor
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 
         self.view.addSubview(self.configurationView)
@@ -72,4 +80,13 @@ class ConfigurationViewController: UIViewController {
         
     }
     
+    @objc private func toggleUploadImmediately(sender: Any) {
+        guard let uploadSwitch = sender as? UISwitch else {
+            assertionFailure("No switch")
+            return
+        }
+        
+        self.appSettings.uploadImmediately = uploadSwitch.isOn
+        self.syncManager.uploadImmediatelyToggled()
+    }
 }

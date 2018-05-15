@@ -19,6 +19,8 @@ class ScanTicketViewController: UIViewController {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    let branding = Branding.shared
+    
     private var qrCodeDetected = false
     
     struct DelayBetweenTwoScans {
@@ -26,8 +28,7 @@ class ScanTicketViewController: UIViewController {
         static let noDelay: UInt64 = 0
     }
     
-    //TODO: Add an option for this
-    let shouldUploadImmediately = true
+    let shouldUploadImmediately: Bool
     
     init(withTicketManager: TicketManager, andCheckInManager: CheckInManager, andSyncManager: SyncManager) {
         
@@ -35,6 +36,8 @@ class ScanTicketViewController: UIViewController {
         self.ticketManager = withTicketManager
         self.checkinManager = andCheckInManager
         self.syncManager = andSyncManager
+        
+        self.shouldUploadImmediately = LocalAppSettings().uploadImmediately
     
         super.init(nibName: nil, bundle: nil)
         
@@ -55,6 +58,7 @@ class ScanTicketViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.view.addSubview(self.scanTicketView)
+        self.view.backgroundColor = self.branding.defaultBackgroundColor
         
         // set navigation items
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(ScanTicketViewController.manualSearchButtonTapped(_:)))
@@ -168,7 +172,7 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
             
             do {
                 guard let ticket = try self.ticketManager.ticket(withSecret: secret) else {
-                    assertionFailure("No ticket with secret \(secret)")
+                    NSLog("No ticket with secret \(secret)")
                     return
                 }
                 
@@ -227,11 +231,18 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
         self.videoPreviewLayer?.connection?.isEnabled = false
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .valid)
         
-        if let secret = ticket.secret {
-            let checkIn = try! self.checkinManager.insertNewCheckIn(withDateTime: Date(), secret: secret)
+        guard let secret = ticket.secret else {
+            self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.standard)
+            return
+        }
+        
+        do {
+            let checkIn = try self.checkinManager.insertNewCheckIn(withDateTime: Date(), secret: secret)
             if self.shouldUploadImmediately == true {
                 self.syncManager.upload(checkIn: checkIn)
             }
+        } catch {
+            
         }
         
         self.continueScanning(withDelayInSeconds: DelayBetweenTwoScans.standard)
