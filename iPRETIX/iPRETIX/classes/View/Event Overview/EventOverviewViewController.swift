@@ -123,7 +123,7 @@ class EventOverviewViewController: UIViewController {
     }
     
     @objc func openConfigurationButtonTapped(_ sender: Any) {
-        let configurationViewController = ConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager)
+        let configurationViewController = ConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager, syncManager: self.syncManager)
         self.navigationController?.pushViewController(configurationViewController, animated: true)
     }
     

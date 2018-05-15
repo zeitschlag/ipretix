@@ -13,11 +13,13 @@ class ConfigurationViewController: UIViewController {
     private let configurationView: ConfigurationView
     private let appConfigurationManager: PretixConfigurationManager
     private let appSettings = LocalAppSettings()
+    private let syncManager: SyncManager
     
-    init(withAppConfigurationManager: PretixConfigurationManager) {
+    init(withAppConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
         
         self.configurationView = ConfigurationView()
         self.appConfigurationManager = withAppConfigurationManager
+        self.syncManager = syncManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -85,5 +87,6 @@ class ConfigurationViewController: UIViewController {
         }
         
         self.appSettings.uploadImmediately = uploadSwitch.isOn
+        self.syncManager.uploadImmediatelyToggled()
     }
 }
