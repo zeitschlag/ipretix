@@ -24,13 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appConfigurationManager = PretixConfigurationManager()
         appConfigurationManager.loadAppConfiguration()
 
-        let ticketManager = TicketManager(withCoreDataStack: self.coreDataStack)
-        let checkInManager = CheckInManager(withCoreDataStack: self.coreDataStack)
+        let ticketManager = TicketManager(coreDataStack: self.coreDataStack)
+        let checkInManager = CheckInManager(coreDataStack: self.coreDataStack)
         let pretixAPI = PretixAPI(configurationManager: appConfigurationManager)
         
-        let syncManager = SyncManager(withTicketManager: ticketManager, andCheckInManager: checkInManager, andAPI: pretixAPI)
+        let syncManager = SyncManager(ticketManager: ticketManager, checkInManager: checkInManager, API: pretixAPI)
         
-        let eventOverviewViewController = EventOverviewViewController(withAppConfigurationManager: appConfigurationManager, andSyncManager: syncManager, andTicketManager: ticketManager)
+        let eventOverviewViewController = EventOverviewViewController(appConfigurationManager: appConfigurationManager, syncManager: syncManager, ticketManager: ticketManager)
         let rootViewNavigationController = UINavigationController(rootViewController: eventOverviewViewController)
         rootViewNavigationController.navigationBar.tintColor = Branding.shared.navigatinoBarTintColor
 

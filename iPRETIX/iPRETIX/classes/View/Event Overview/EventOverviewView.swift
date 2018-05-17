@@ -13,7 +13,7 @@ class EventOverviewView: UIView {
     var scanTicketsButton: UIButton
     var openConfigurationButton: UIButton
     
-    init(withBranding branding: Branding) {
+    init(branding: Branding) {
         
         self.scanTicketsButton = UIButton(type: .system)
         let scanTicketsButtonTitle = NSLocalizedString("Scan Tickets", comment: "")

@@ -17,11 +17,11 @@ class EventOverviewViewController: UIViewController {
     let syncManager: SyncManager
     let ticketManager: TicketManager
     
-    init(withAppConfigurationManager: PretixConfigurationManager, andSyncManager: SyncManager, andTicketManager: TicketManager) {
+    init(appConfigurationManager: PretixConfigurationManager, syncManager: SyncManager, ticketManager: TicketManager) {
         
-        self.appConfigurationManager = withAppConfigurationManager
-        self.syncManager = andSyncManager
-        self.ticketManager = andTicketManager
+        self.appConfigurationManager = appConfigurationManager
+        self.syncManager = syncManager
+        self.ticketManager = ticketManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,11 +89,11 @@ class EventOverviewViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let noEventView = NoEventView(withBranding: Branding.shared)
+        let noEventView = NoEventView(branding: Branding.shared)
         noEventView.configureAppButton.addTarget(self, action: #selector(EventOverviewViewController.configureAppButtonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(noEventView)
         
-        let eventOverviewView = EventOverviewView(withBranding: Branding.shared)
+        let eventOverviewView = EventOverviewView(branding: Branding.shared)
         eventOverviewView.scanTicketsButton.addTarget(self, action: #selector(EventOverviewViewController.scanTicketsButtonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(eventOverviewView)
         eventOverviewView.openConfigurationButton.addTarget(self, action: #selector(EventOverviewViewController.openConfigurationButtonTapped(_:)), for: .touchUpInside)
@@ -112,18 +112,18 @@ class EventOverviewViewController: UIViewController {
     
     // MARK: - Actions
     @objc func configureAppButtonTapped(_ sender: Any) {
-        let scanConfigurationCodeViewController = ScanConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager, andSyncManager: self.syncManager)
+        let scanConfigurationCodeViewController = ScanConfigurationViewController(appConfigurationManager: self.appConfigurationManager, syncManager: self.syncManager)
         self.navigationController?.present(UINavigationController(rootViewController: scanConfigurationCodeViewController), animated: true, completion: nil)
     }
     
     @objc func scanTicketsButtonTapped(_ sender: Any) {
-        let checkInManager = CheckInManager(withCoreDataStack: CoreDataStack.shared)
-        let scanTicketViewController = ScanTicketViewController(withTicketManager: self.ticketManager, andCheckInManager: checkInManager, andSyncManager: self.syncManager)
+        let checkInManager = CheckInManager(coreDataStack: CoreDataStack.shared)
+        let scanTicketViewController = ScanTicketViewController(ticketManager: self.ticketManager, checkInManager: checkInManager, syncManager: self.syncManager)
         self.navigationController?.pushViewController(scanTicketViewController, animated: true)
     }
     
     @objc func openConfigurationButtonTapped(_ sender: Any) {
-        let configurationViewController = ConfigurationViewController(withAppConfigurationManager: self.appConfigurationManager, syncManager: self.syncManager)
+        let configurationViewController = ConfigurationViewController(appConfigurationManager: self.appConfigurationManager, syncManager: self.syncManager)
         self.navigationController?.pushViewController(configurationViewController, animated: true)
     }
     

@@ -15,10 +15,10 @@ class ConfigurationViewController: UIViewController {
     private let appSettings = LocalAppSettings()
     private let syncManager: SyncManager
     
-    init(withAppConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
+    init(appConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
         
-        self.configurationView = ConfigurationView()
-        self.appConfigurationManager = withAppConfigurationManager
+        self.configurationView = ConfigurationView(frame: .zero)
+        self.appConfigurationManager = appConfigurationManager
         self.syncManager = syncManager
         
         super.init(nibName: nil, bundle: nil)

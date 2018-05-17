@@ -15,8 +15,8 @@ class CheckInManager {
     let coreDataStack: CoreDataStack
     private let fetchCheckinRequest: NSFetchRequest<CheckIn> = CheckIn.fetchRequest()
     
-    init(withCoreDataStack: CoreDataStack) {
-        self.coreDataStack = withCoreDataStack
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
     }
     
     func getAllCheckIns() throws -> [CheckIn] {

@@ -22,8 +22,8 @@ class TicketManager {
     
     private let fetchTicketRequest: NSFetchRequest<Ticket> = Ticket.fetchRequest()
     
-    init(withCoreDataStack: CoreDataStack) {
-        self.coreDataStack = withCoreDataStack
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
     }
     
     func getAllTickets() throws -> [Ticket] {

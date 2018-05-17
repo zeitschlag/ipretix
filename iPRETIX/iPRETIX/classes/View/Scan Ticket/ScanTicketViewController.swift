@@ -30,12 +30,12 @@ class ScanTicketViewController: UIViewController {
     
     let shouldUploadImmediately: Bool
     
-    init(withTicketManager: TicketManager, andCheckInManager: CheckInManager, andSyncManager: SyncManager) {
+    init(ticketManager: TicketManager, checkInManager: CheckInManager, syncManager: SyncManager) {
         
-        self.scanTicketView = ScanTicketView(withBranding: Branding.shared)
-        self.ticketManager = withTicketManager
-        self.checkinManager = andCheckInManager
-        self.syncManager = andSyncManager
+        self.scanTicketView = ScanTicketView(branding: Branding.shared)
+        self.ticketManager = ticketManager
+        self.checkinManager = checkInManager
+        self.syncManager = syncManager
         
         self.shouldUploadImmediately = LocalAppSettings().uploadImmediately
     

@@ -21,12 +21,12 @@ class ScanConfigurationViewController: UIViewController {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
-    init(withAppConfigurationManager: PretixConfigurationManager, andSyncManager: SyncManager) {
+    init(appConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
         
-        self.appConfigurationManager = withAppConfigurationManager
-        self.syncManager = andSyncManager
+        self.appConfigurationManager = appConfigurationManager
+        self.syncManager = syncManager
         
-        self.scanConfigurationView = ScanConfigurationView(withBranding: Branding.shared)
+        self.scanConfigurationView = ScanConfigurationView(branding: Branding.shared)
         
         super.init(nibName: nil, bundle: nil)
         

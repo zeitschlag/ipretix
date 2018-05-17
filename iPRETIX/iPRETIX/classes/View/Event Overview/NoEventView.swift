@@ -12,7 +12,7 @@ class NoEventView: UIView {
 
     let configureAppButton: UIButton
     
-    init(withBranding branding: Branding) {
+    init(branding: Branding) {
         
         let configureAppButtonTitle = NSLocalizedString("App konfigurieren", comment: "")
         

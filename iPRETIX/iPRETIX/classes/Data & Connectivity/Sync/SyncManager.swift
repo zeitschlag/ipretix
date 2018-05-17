@@ -35,10 +35,10 @@ class SyncManager {
     var syncTimer: Timer?
     let syncTimerInterval: TimeInterval = 60 // seconds
     
-    init(withTicketManager: TicketManager, andCheckInManager: CheckInManager, andAPI: PretixAPI) {
-        self.ticketManager = withTicketManager
-        self.checkInManager = andCheckInManager
-        self.api = andAPI
+    init(ticketManager: TicketManager, checkInManager: CheckInManager, API: PretixAPI) {
+        self.ticketManager = ticketManager
+        self.checkInManager = checkInManager
+        self.api = API
         
         self.setupTimer()
     }

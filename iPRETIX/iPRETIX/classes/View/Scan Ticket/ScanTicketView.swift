@@ -20,7 +20,7 @@ class ScanTicketView: UIView {
     
     let branding: Branding
     
-    init(withBranding branding: Branding) {
+    init(branding: Branding) {
         
         self.branding = branding
         
