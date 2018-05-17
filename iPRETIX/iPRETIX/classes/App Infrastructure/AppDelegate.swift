@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let eventOverviewViewController = EventOverviewViewController(withAppConfigurationManager: appConfigurationManager, andSyncManager: syncManager, andTicketManager: ticketManager)
         let rootViewNavigationController = UINavigationController(rootViewController: eventOverviewViewController)
+        rootViewNavigationController.navigationBar.tintColor = Branding.shared.navigatinoBarTintColor
 
         window.rootViewController = rootViewNavigationController
         window.makeKeyAndVisible()

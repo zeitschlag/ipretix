@@ -59,6 +59,10 @@ class Branding {
     var errorTextColor: UIColor {
         return UIColor.black
     }
+    
+    var navigatinoBarTintColor: UIColor {
+        return self.pretixPurpleColor
+    }
 
     //MARK: - Fonts
     
