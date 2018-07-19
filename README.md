@@ -1,6 +1,6 @@
 # iPRETIX
 
-## Goals for 1.0
+## Goals for 0.1
 
 universal iOS-app to scan and validate pretix-tickets, just like [pretixdroid](https://play.google.com/store/apps/details?id=eu.pretix.pretixdroid&hl=en_US), but for iOS
 
