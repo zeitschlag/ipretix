@@ -1,10 +1,8 @@
 # iPRETIX
 
-**Development happens mostly at [GitLab](https://gitlab.com/zeitschlag/ipretix/issues) at the moment. It is [planned to move to Github](https://gitlab.com/zeitschlag/ipretix/issues/14) in the near future. So: Please consider this repo WIP. Thanks.**
-
 ## Goals for 1.0
 
-universal iOS-app to scan and validate pretix-tickets
+universal iOS-app to scan and validate pretix-tickets, just like [pretixdroid](https://play.google.com/store/apps/details?id=eu.pretix.pretixdroid&hl=en_US), but for iOS
 
 ### Configuration
 - User scans the pretixdroid configuration-QR-code to read the configuration
@@ -23,7 +21,3 @@ universal iOS-app to scan and validate pretix-tickets
 ### Manual Search/Manual redeeming
 - Users can search the locally available list of ticket data for order-number or attendee name
 - Users can manually redeem tickets (if an attendee forgot to bring the ticket)
-
-## TODO
-
-- [ ] find a better name
