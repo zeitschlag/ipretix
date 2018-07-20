@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  iPRETIX
+
+  Created by Nathan Mattes on 20.07.18.
+  Copyright © 2018 Nathan Mattes. All rights reserved.
+*/
+
+"GENERAL.OK" = "OK";
+"GENERAL.YES" = "Ja";
+"GENERAL.CANCEL" = "Abbrechen";
+
+"EVENT_OVERVIEW.BUTTON.SCAN_TICKETS" = "Tickets einlesen";
+"EVENT_OVERVIEW.BUTTON.CONFIGURE_APP" = "App konfigurieren";
+
+"SCAN_TICKETS.ALERT.SPECIAL_TICKET" = "Besonderes Ticket";
+
+"SCAN_TICKETS.RESULT.PLEASE_SCAN_TICKET" = "(Bitte scanne ein Ticket)";
+"SCAN_TICKETS.RESULT.VALID_TICKET" = "Gültig!";
+"SCAN_TICKETS.RESULT.TICKET_ALREADY_REDEEMED" = "Bereits eingelöst";
+
+"SYNC_MANAGER.ALERT.ERROR.TITLE" = "Ein Fehler ist aufgetreten";
+"SYNC_MANAGER.TICKET_DOWNLOAD_FAILED.RESPONSE_CODE_%@" = "Server antwortete mit Status Code %@";
+
+"SCAN_CONFIGURATION.PLEASE_SCAN_CONFIGURATION" = "Bitte scanne einen Konfigurationcode";
+"SCAN_CONFIGURATION.CONFIGURATION_SUCCESSFUL" = "App erfolgreich konfiguriert!";
+
+"CONFIGURATION.TITLE" = "Konfiguration";
+"CONFIGURATION.UPLOAD_IMMEDIATELY" = "Tickets sofort abgleichen";
+"CONFIGURATION.RESET_CONFIGURATION" = "App zurücksetzen";
+
+"CONFIGURATION.ALERT.REMOVE_CURRENT.TITLE" = "App wirklich zurücksetzen?";
