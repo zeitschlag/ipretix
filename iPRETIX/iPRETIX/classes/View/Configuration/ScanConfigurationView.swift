@@ -27,7 +27,7 @@ class ScanConfigurationView: UIView {
         self.bottomView.backgroundColor = self.branding.darkBackgroundColor
         
         self.resultLabel = UILabel(frame: .zero)
-        self.resultLabel.text = NSLocalizedString("please scan a configuration code", comment: "")
+        self.resultLabel.text = NSLocalizedString("SCAN_CONFIGURATION.PLEASE_SCAN_CONFIGURATION", comment: "")
         
         self.resultLabel.numberOfLines = 0
         self.resultLabel.textAlignment = .center
@@ -96,7 +96,7 @@ class ScanConfigurationView: UIView {
     func appConfiguredSuccessfully() {
         UIView.animate(withDuration: 0.5) {
             self.bottomView.backgroundColor = self.branding.confirmationBackgroundColor
-            self.resultLabel.text = NSLocalizedString("App erfolgreich konfiguriert", comment: "")
+            self.resultLabel.text = NSLocalizedString("SCAN_CONFIGURATION.CONFIGURATION_SUCCESSFUL", comment: "")
             self.resultLabel.textColor = self.branding.confirmationTextColor
         }
     }

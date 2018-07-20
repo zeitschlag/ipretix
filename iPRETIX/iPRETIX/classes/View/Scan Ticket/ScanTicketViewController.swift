@@ -206,8 +206,8 @@ extension ScanTicketViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func ticketValidWithRequirements(_ ticket: Ticket) {
         self.videoPreviewLayer?.connection?.isEnabled = false
         self.scanTicketView.updateBottomView(withTicket: ticket, andRedeemingResult: .validWithRequirements)
-        let attentionAlert = UIAlertController(title: nil, message: NSLocalizedString("Special Ticket", comment: ""), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (_) in
+        let attentionAlert = UIAlertController(title: nil, message: NSLocalizedString("SCAN_TICKETS.ALERT.SPECIAL_TICKET", comment: ""), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("GENERAL.OK", comment: ""), style: .default) { (_) in
             
             if let secret = ticket.secret {
                 do {

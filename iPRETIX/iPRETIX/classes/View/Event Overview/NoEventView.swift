@@ -14,7 +14,7 @@ class NoEventView: UIView {
     
     init(branding: Branding) {
         
-        let configureAppButtonTitle = NSLocalizedString("App konfigurieren", comment: "")
+        let configureAppButtonTitle = NSLocalizedString("EVENT_OVERVIEW.BUTTON.CONFIGURE_APP", comment: "")
         
         configureAppButton = UIButton(type: .system)
         configureAppButton.setTitle(configureAppButtonTitle, for: .normal)

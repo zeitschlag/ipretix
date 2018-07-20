@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  iPRETIX
+
+  Created by Nathan Mattes on 20.07.18.
+  Copyright © 2018 Nathan Mattes. All rights reserved.
+*/
+
+"GENERAL.OK" = "OK";
+"GENERAL.YES" = "Yes";
+"GENERAL.CANCEL" = "Cancel";
+
+"EVENT_OVERVIEW.BUTTON.SCAN_TICKETS" = "Scan Tickets";
+"EVENT_OVERVIEW.BUTTON.CONFIGURE_APP" = "Configure App";
+
+"SCAN_TICKETS.ALERT.SPECIAL_TICKET" = "Special Ticket";
+
+"SCAN_TICKETS.RESULT.PLEASE_SCAN_TICKET" = "(Please scan a ticket)";
+"SCAN_TICKETS.RESULT.VALID_TICKET" = "Valid!";
+"SCAN_TICKETS.RESULT.TICKET_ALREADY_REDEEMED" = "Already redeemed";
+
+"SYNC_MANAGER.ALERT.ERROR.TITLE" = "An Error Occurred";
+"SYNC_MANAGER.TICKET_DOWNLOAD_FAILED.RESPONSE_CODE_%@" = "Server responded with Status Code %@";
+
+"SCAN_CONFIGURATION.PLEASE_SCAN_CONFIGURATION" = "Please scan a Configuration Code";
+"SCAN_CONFIGURATION.CONFIGURATION_SUCCESSFUL" = "Configured App Successfully";
+
+"CONFIGURATION.TITLE" = "Configuration";
+"CONFIGURATION.UPLOAD_IMMEDIATELY" = "Upload scans immediately";
+"CONFIGURATION.RESET_CONFIGURATION" = "Reset current configuration";
+
+"CONFIGURATION.ALERT.REMOVE_CURRENT.TITLE" = "Delete current Configuration?";
