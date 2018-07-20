@@ -31,7 +31,7 @@ class ScanTicketView: UIView {
         self.bottomView.backgroundColor = self.branding.darkBackgroundColor
         
         self.resultLabel = UILabel(frame: .zero)
-        self.resultLabel.text = NSLocalizedString("(Please scan a ticket)", comment: "")
+        self.resultLabel.text = NSLocalizedString("SCAN_TICKETS.RESULT.PLEASE_SCAN_TICKET", comment: "")
         
         self.resultLabel.numberOfLines = 0
         self.resultLabel.textAlignment = .center
@@ -154,7 +154,7 @@ class ScanTicketView: UIView {
                 self.nameLabel.text = ticket.attendeeName ?? "-"
                 self.orderCodeLabel.text = ticket.orderCode ?? "-"
                 self.ticketTypeLabel.text = ticket.itemName ?? "-"
-                self.resultLabel.text = NSLocalizedString("Valid!", comment: "")
+                self.resultLabel.text = NSLocalizedString("SCAN_TICKETS.RESULT.VALID_TICKET", comment: "")
                 
                 UIView.animate(withDuration: 0.1, animations: {
                     self.bottomView.backgroundColor = self.branding.confirmationBackgroundColor
@@ -171,7 +171,7 @@ class ScanTicketView: UIView {
                 self.nameLabel.text = ticket.attendeeName ?? "-"
                 self.orderCodeLabel.text = ticket.orderCode ?? "-"
                 self.ticketTypeLabel.text = ticket.itemName ?? "-"
-                self.resultLabel.text = NSLocalizedString("Already redeemed", comment: "")
+                self.resultLabel.text = NSLocalizedString("SCAN_TICKETS.RESULT.TICKET_ALREADY_REDEEMED", comment: "")
                 
                 UIView.animate(withDuration: 0.1, animations: {
                     self.bottomView.backgroundColor = self.branding.errorBackgroundColor
@@ -192,7 +192,7 @@ class ScanTicketView: UIView {
             self.nameLabel.text = "-"
             self.orderCodeLabel.text = "-"
             self.ticketTypeLabel.text = "-"
-            self.resultLabel.text = NSLocalizedString("(Please scan a ticket)", comment: "")
+            self.resultLabel.text = NSLocalizedString("SCAN_TICKETS.RESULT.PLEASE_SCAN_TICKET", comment: "")
             
             self.bottomView.backgroundColor = self.branding.darkBackgroundColor
             self.nameLabel.textColor = self.branding.lightTextColor

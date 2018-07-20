@@ -141,12 +141,12 @@ class ScanConfigurationViewController: UIViewController {
             preconditionFailure("Check User Info/No error message")
         }
         
-        let alertTitle = NSLocalizedString("An Error Occurred", comment: "")
+        let alertTitle = NSLocalizedString("SYNC_MANAGER.ALERT.ERROR.TITLE", comment: "")
         let alertMessage = localizedErrorDescription
         
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         
-        let okActionTitle = NSLocalizedString("OK", comment: "")
+        let okActionTitle = NSLocalizedString("GENERAL.OK", comment: "")
         let okAction = UIAlertAction(title: okActionTitle, style: .default) { (_) in
             OperationQueue.main.addOperation {
                 self.navigationController?.dismiss(animated: true, completion: nil)

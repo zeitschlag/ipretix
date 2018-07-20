@@ -64,7 +64,8 @@ class SyncManager {
             }
             
             guard response.statusCode == 200 else {
-                let userInfo = [Notifications.UserInfo.ErrorDescriptionKey: NSLocalizedString("Server responded with Status Code \(response.statusCode)", comment: "")]
+                let errorDescription = String(format: NSLocalizedString("SYNC_MANAGER.TICKET_DOWNLOAD_FAILED.RESPONSE_CODE_%@", comment: ""), "\(response.statusCode)")
+                let userInfo = [Notifications.UserInfo.ErrorDescriptionKey: errorDescription]
                 NotificationCenter.default.post(name: Notifications.TicketDownloadFailed, object: self, userInfo: userInfo)
                 return
             }
@@ -163,7 +164,9 @@ class SyncManager {
             }
             
             guard response.statusCode == 200 else {
-                let userInfo = [Notifications.UserInfo.ErrorDescriptionKey: NSLocalizedString("Server responded with Status Code \(response.statusCode)", comment: "")]
+                let errorDescription = String(format: NSLocalizedString("SYNC_MANAGER.TICKET_DOWNLOAD_FAILED.RESPONSE_CODE_%@", comment: ""), "\(response.statusCode)")
+
+                let userInfo = [Notifications.UserInfo.ErrorDescriptionKey: errorDescription]
                 NotificationCenter.default.post(name: Notifications.CheckInUploadFailed, object: self, userInfo: userInfo)
                 return
             }

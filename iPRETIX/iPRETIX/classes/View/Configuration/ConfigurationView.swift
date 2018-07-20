@@ -21,7 +21,7 @@ class ConfigurationView: UIView {
         
         self.uploadImmediatelyTitleLabel = UILabel(frame: .zero)
         self.uploadImmediatelyTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.uploadImmediatelyTitleLabel.text = NSLocalizedString("Upload scans immediately", comment: "")
+        self.uploadImmediatelyTitleLabel.text = NSLocalizedString("CONFIGURATION.UPLOAD_IMMEDIATELY", comment: "")
         self.uploadImmediatelyTitleLabel.numberOfLines = 0
         self.uploadImmediatelyTitleLabel.font = branding.defaultLabelFont
         self.uploadImmediatelyTitleLabel.textColor = branding.darkTextColor
@@ -36,7 +36,7 @@ class ConfigurationView: UIView {
 
         self.deleteCurrentConfigurationButton = UIButton(type: .system)
         self.deleteCurrentConfigurationButton.translatesAutoresizingMaskIntoConstraints = false
-        self.deleteCurrentConfigurationButton.setTitle(NSLocalizedString("Reset current configuration", comment: ""), for: .normal)
+        self.deleteCurrentConfigurationButton.setTitle(NSLocalizedString("CONFIGURATION.RESET_CONFIGURATION", comment: ""), for: .normal)
         self.deleteCurrentConfigurationButton.setTitleColor(branding.destructiveButtonTextColor, for: .normal)
         self.deleteCurrentConfigurationButton.titleLabel?.font = branding.smallButtonFont
         self.deleteCurrentConfigurationButton.titleLabel?.textAlignment = .center

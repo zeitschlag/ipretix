@@ -29,7 +29,7 @@ class ConfigurationViewController: UIViewController {
         
         self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControlEvents.valueChanged)
         
-        self.title = NSLocalizedString("Configuration", comment: "")
+        self.title = NSLocalizedString("CONFIGURATION.TITLE", comment: "")
     }
     
     override func loadView() {
@@ -60,9 +60,9 @@ class ConfigurationViewController: UIViewController {
     //MARK: - Actions
     
     @objc private func deleteCurrentConfigurationButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("Delete current Configuration?", comment: ""), message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("CONFIGURATION.ALERT.REMOVE_CURRENT.TITLE", comment: ""), message: nil, preferredStyle: .alert)
         
-        let deleteAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { (action) in
+        let deleteAction = UIAlertAction(title: NSLocalizedString("GENERAL.YES", comment: ""), style: .destructive) { (action) in
             
             self.appConfigurationManager.deleteCurrentAppConfiguration()
             
@@ -71,7 +71,7 @@ class ConfigurationViewController: UIViewController {
             }
         }
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("GENERAL.CANCEL", comment: ""), style: .cancel, handler: nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)

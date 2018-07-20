@@ -16,7 +16,7 @@ class EventOverviewView: UIView {
     init(branding: Branding) {
         
         self.scanTicketsButton = UIButton(type: .system)
-        let scanTicketsButtonTitle = NSLocalizedString("Scan Tickets", comment: "")
+        let scanTicketsButtonTitle = NSLocalizedString("EVENT_OVERVIEW.BUTTON.SCAN_TICKETS", comment: "")
         self.scanTicketsButton.setTitle(scanTicketsButtonTitle, for: .normal)
         self.scanTicketsButton.titleLabel?.font = branding.defaultButtonFont
         self.scanTicketsButton.setTitleColor(branding.defaultButtonTextColor, for: .normal)
