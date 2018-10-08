@@ -144,7 +144,7 @@ class ScanConfigurationViewController: UIViewController {
         let alertTitle = NSLocalizedString("SYNC_MANAGER.ALERT.ERROR.TITLE", comment: "")
         let alertMessage = localizedErrorDescription
         
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         
         let okActionTitle = NSLocalizedString("GENERAL.OK", comment: "")
         let okAction = UIAlertAction(title: okActionTitle, style: .default) { (_) in

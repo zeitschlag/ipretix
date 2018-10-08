@@ -27,7 +27,7 @@ class ConfigurationViewController: UIViewController {
         
         self.configurationView.uploadImmediatelySwitch.isOn = self.appSettings.uploadImmediately
         
-        self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControlEvents.valueChanged)
+        self.configurationView.uploadImmediatelySwitch.addTarget(self, action: #selector(toggleUploadImmediately(sender:)), for: UIControl.Event.valueChanged)
         
         self.title = NSLocalizedString("CONFIGURATION.TITLE", comment: "")
     }
