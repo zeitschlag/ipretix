@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let checkInManager = CheckInManager(coreDataStack: self.coreDataStack)
         let pretixAPI = PretixAPI(configurationManager: appConfigurationManager)
         
-        let syncManager = SyncManager(ticketManager: ticketManager, checkInManager: checkInManager, API: pretixAPI)
+        let syncManager = NetworkManager(ticketManager: ticketManager, checkInManager: checkInManager, API: pretixAPI)
         
         let eventOverviewViewController = EventOverviewViewController(appConfigurationManager: appConfigurationManager, syncManager: syncManager, ticketManager: ticketManager)
         let rootViewNavigationController = UINavigationController(rootViewController: eventOverviewViewController)

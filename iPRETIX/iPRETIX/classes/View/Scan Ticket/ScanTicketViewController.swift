@@ -13,7 +13,7 @@ class ScanTicketViewController: UIViewController {
     
     let ticketManager: TicketManager
     let checkinManager: CheckInManager
-    let syncManager: SyncManager
+    let syncManager: NetworkManager
     let scanTicketView: ScanTicketView
     
     var captureSession: AVCaptureSession?
@@ -30,7 +30,7 @@ class ScanTicketViewController: UIViewController {
     
     let shouldUploadImmediately: Bool
     
-    init(ticketManager: TicketManager, checkInManager: CheckInManager, syncManager: SyncManager) {
+    init(ticketManager: TicketManager, checkInManager: CheckInManager, syncManager: NetworkManager) {
         
         self.scanTicketView = ScanTicketView(branding: Branding.shared)
         self.ticketManager = ticketManager
@@ -41,10 +41,10 @@ class ScanTicketViewController: UIViewController {
     
         super.init(nibName: nil, bundle: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadStarted(_:)), name: SyncManager.Notifications.CheckInUploadStarted, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadFailed(_:)), name: SyncManager.Notifications.CheckInUploadFailed, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadIncomplete(_:)), name: SyncManager.Notifications.CheckInUploadIncomplete, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadSucceeded(_:)), name: SyncManager.Notifications.CheckInUploadSucceeded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadStarted(_:)), name: NetworkManager.Notifications.CheckInUploadStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadFailed(_:)), name: NetworkManager.Notifications.CheckInUploadFailed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadIncomplete(_:)), name: NetworkManager.Notifications.CheckInUploadIncomplete, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanTicketViewController.checkInUploadSucceeded(_:)), name: NetworkManager.Notifications.CheckInUploadSucceeded, object: nil)
 
     }
     

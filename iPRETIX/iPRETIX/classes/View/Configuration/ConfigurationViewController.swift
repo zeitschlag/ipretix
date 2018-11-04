@@ -13,9 +13,9 @@ class ConfigurationViewController: UIViewController {
     private let configurationView: ConfigurationView
     private let appConfigurationManager: PretixConfigurationManager
     private let appSettings = LocalAppSettings()
-    private let syncManager: SyncManager
+    private let syncManager: NetworkManager
     
-    init(appConfigurationManager: PretixConfigurationManager, syncManager: SyncManager) {
+    init(appConfigurationManager: PretixConfigurationManager, syncManager: NetworkManager) {
         
         self.configurationView = ConfigurationView(frame: .zero)
         self.appConfigurationManager = appConfigurationManager

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SyncManager {
+class NetworkManager {
     
     struct Notifications {
         //MARK: - Ticket Download

@@ -14,10 +14,10 @@ class EventOverviewViewController: UIViewController {
     var eventOverviewView: EventOverviewView?
     
     let appConfigurationManager: PretixConfigurationManager
-    let syncManager: SyncManager
+    let syncManager: NetworkManager
     let ticketManager: TicketManager
     
-    init(appConfigurationManager: PretixConfigurationManager, syncManager: SyncManager, ticketManager: TicketManager) {
+    init(appConfigurationManager: PretixConfigurationManager, syncManager: NetworkManager, ticketManager: TicketManager) {
         
         self.appConfigurationManager = appConfigurationManager
         self.syncManager = syncManager

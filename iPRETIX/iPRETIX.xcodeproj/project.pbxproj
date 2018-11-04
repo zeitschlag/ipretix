@@ -16,7 +16,7 @@
 		D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
 		D8735E622024498E00201215 /* CheckInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E612024498E00201215 /* CheckInManager.swift */; };
-		D8735E6820244D6900201215 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* SyncManager.swift */; };
+		D8735E6820244D6900201215 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E6720244D6900201215 /* NetworkManager.swift */; };
 		D88059E5200FD44200F9680A /* PretixConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88059E4200FD44200F9680A /* PretixConfiguration.swift */; };
 		D8A12A45200A6B90009830C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12A44200A6B90009830C6 /* AppDelegate.swift */; };
 		D8A12A4E200A6B90009830C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A12A4D200A6B90009830C6 /* Assets.xcassets */; };
@@ -57,7 +57,7 @@
 		D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		D8735E612024498E00201215 /* CheckInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInManager.swift; sourceTree = "<group>"; };
-		D8735E6720244D6900201215 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		D8735E6720244D6900201215 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D88059E4200FD44200F9680A /* PretixConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixConfiguration.swift; sourceTree = "<group>"; };
 		D88C04CC2100EDD400699566 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D8A12A41200A6B90009830C6 /* iPRETIX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPRETIX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				D88059E3200FD43400F9680A /* Models */,
-				D8A12A9D200CDC5A009830C6 /* Sync */,
+				D8A12A9D200CDC5A009830C6 /* Networking */,
 				D8A12A95200CD8A5009830C6 /* CoreDataStack.swift */,
 				D86DF201202064300062052D /* TicketManager.swift */,
 				D8735E612024498E00201215 /* CheckInManager.swift */,
@@ -284,13 +284,13 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		D8A12A9D200CDC5A009830C6 /* Sync */ = {
+		D8A12A9D200CDC5A009830C6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D8735E6720244D6900201215 /* SyncManager.swift */,
+				D8735E6720244D6900201215 /* NetworkManager.swift */,
 				D81952D12024FE90001454F6 /* PretixAPI.swift */,
 			);
-			path = Sync;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,7 +406,7 @@
 				D81952DC202505EE001454F6 /* TicketDownloadContent.swift in Sources */,
 				D88059E5200FD44200F9680A /* PretixConfiguration.swift in Sources */,
 				D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */,
-				D8735E6820244D6900201215 /* SyncManager.swift in Sources */,
+				D8735E6820244D6900201215 /* NetworkManager.swift in Sources */,
 				D8A12A9B200CDB88009830C6 /* iPRETIX.xcdatamodeld in Sources */,
 				D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */,
 				D8A12AA5200CF920009830C6 /* EventOverviewViewController.swift in Sources */,
