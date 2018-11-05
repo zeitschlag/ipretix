@@ -13,6 +13,7 @@
 		D81AB98F2043431A004A07E0 /* CheckInUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */; };
 		D82177622026113C00DB34D0 /* ScanTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82177612026113C00DB34D0 /* ScanTicketView.swift */; };
 		D824D16C2017D4070067F3C8 /* PretixConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D824D16B2017D4070067F3C8 /* PretixConfigurationManager.swift */; };
+		D83EE714218F6C9000CFA51C /* DeviceAuthenticationQRCodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83EE713218F6C9000CFA51C /* DeviceAuthenticationQRCodeContent.swift */; };
 		D8673C57204AE7C9008E98F8 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */; };
 		D86DF202202064310062052D /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF201202064300062052D /* TicketManager.swift */; };
 		D8735E622024498E00201215 /* CheckInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8735E612024498E00201215 /* CheckInManager.swift */; };
@@ -32,6 +33,7 @@
 		D8A12AA9200D0112009830C6 /* EventOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AA8200D0112009830C6 /* EventOverviewView.swift */; };
 		D8A12AAB200D011C009830C6 /* NoEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAA200D011C009830C6 /* NoEventView.swift */; };
 		D8A12AAD200D1608009830C6 /* ScanConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A12AAC200D1608009830C6 /* ScanConfigurationView.swift */; };
+		D8ACF7DA218F378C009F8D49 /* EnterConfigurationManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ACF7D9218F378C009F8D49 /* EnterConfigurationManuallyView.swift */; };
 		D8B00BBF201CCA9900EBA466 /* Branding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B00BBE201CCA9900EBA466 /* Branding.swift */; };
 		D8BE30C0208E80FF0075DC0C /* LocalAppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BE30BF208E80FF0075DC0C /* LocalAppSettings.swift */; };
 		D8CF806E210278120004D596 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CF8070210278120004D596 /* Localizable.strings */; };
@@ -54,6 +56,7 @@
 		D81AB98E2043431A004A07E0 /* CheckInUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInUploadResponse.swift; sourceTree = "<group>"; };
 		D82177612026113C00DB34D0 /* ScanTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTicketView.swift; sourceTree = "<group>"; };
 		D824D16B2017D4070067F3C8 /* PretixConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretixConfigurationManager.swift; sourceTree = "<group>"; };
+		D83EE713218F6C9000CFA51C /* DeviceAuthenticationQRCodeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthenticationQRCodeContent.swift; sourceTree = "<group>"; };
 		D8673C56204AE7C8008E98F8 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		D86DF201202064300062052D /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		D8735E612024498E00201215 /* CheckInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInManager.swift; sourceTree = "<group>"; };

@@ -175,17 +175,19 @@ extension ScanConfigurationViewController: AVCaptureMetadataOutputObjectsDelegat
         
         if metaDataObject.type == .qr, let stringValue = metaDataObject.stringValue, let dataValue = stringValue.data(using: .utf8) {
             do {
-                let decodedAppConfiguration = try JSONDecoder().decode(PretixConfiguration.self, from: dataValue)
-                self.appConfigurationManager.deleteCurrentAppConfiguration()
-                self.appConfigurationManager.newAppConfigurationAvailable(decodedAppConfiguration)
-
-                self.captureSession?.stopRunning()
+                let decodedInitialQRCode = try JSONDecoder().decode(DeviceAuthenticationQRCodeContent.self, from: dataValue)
                 
-                self.syncManager.downloadTickets()
+                // store URL somewhere, maybe in the appConfiguration?
+                // store token? I only need it temporarily
+                // request apiToken
+                
+//                self.appConfigurationManager.deleteCurrentAppConfiguration()
+//                self.appConfigurationManager.newAppConfigurationAvailable(decodedAppConfiguration)
+                
+                self.captureSession?.stopRunning()
                 
                 OperationQueue.main.addOperation {
                     self.scanConfigurationView.appConfiguredSuccessfully()
-                    self.navigationItem.rightBarButtonItem = nil
                 }
             } catch let error {
                 print(error)
